@@ -7,4 +7,10 @@
 - [ ] Setup better-auth
 - [ ] Setup trpc
 - [ ] Setup sadmn7 tanstack table
-- [ ] Setup a basic dashboard
+- [ ] **Setup a basic dashboard**
+  - [ ] dashboard layout
+  - [ ] dashboard page
+  - [ ] dashboard sidebar
+  - [ ] dashboard header
+    - [ ] Autmatically generate the breadcrumbs
+  - [ ] dashboard footer
