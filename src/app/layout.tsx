@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 
-import { getBaseUrl } from "@/lib/util"
+import { cn, getBaseUrl } from "@/lib/utils"
+import { SiteHeader } from "@/components/site-header"
+import { TailwindIndicator } from "@/components/tailwind-indicator"
 
-import { mono, sans } from "@/config/fonts"
+import { fontMono, fontSans } from "@/config/fonts"
 import { seoConfig, siteConfig } from "@/config/site"
 
 import "@/app/globals.css"
@@ -31,8 +33,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={siteConfig.locale}>
-      <body className={`${sans.variable} ${mono.variable} antialiased`}>
-        {children}
+      <body
+        className={cn(
+          "bg-background min-h-screen font-sans antialiased",
+          fontSans.variable,
+          fontMono.variable
+        )}
+      >
+        <div className="relative flex min-h-screen flex-col">
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+        </div>
+        <TailwindIndicator />
       </body>
     </html>
   )
