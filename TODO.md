@@ -1,9 +1,9 @@
 - [x] Setup shadcn/ui
   - [x] Setup a `shell` component
   - [x] Add all of the components
-- [ ] Setup drizzle-orm
-  - [ ] Setup drizzle-kit
-  - [ ] Install turso
+- [x] Setup drizzle-orm
+  - [x] Setup drizzle-kit
+  - [x] Install libsql client
 - [ ] Setup better-auth
 - [ ] Setup trpc
 - [ ] Setup sadmn7 tanstack table

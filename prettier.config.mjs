@@ -31,6 +31,7 @@ const config = {
     "^@/features/(.*)$",
     "",
     "^@/config/(.*)$",
+    "^@/env$",
     "",
     "^[./]",
   ],
