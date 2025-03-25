@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 
   experimental: {
+    ppr: "incremental",
     inlineCss: true,
   },
 
