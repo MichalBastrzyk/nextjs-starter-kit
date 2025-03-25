@@ -11,7 +11,14 @@ export function SiteHeader() {
             {siteConfig.title}
           </span>
         </Link>
-        <nav className="flex flex-1 items-center md:justify-end"></nav>
+        <nav className="flex flex-1 items-center gap-2 md:justify-end">
+          <Link
+            href="/"
+            className="text-muted-foreground hover:text-foreground text-sm font-medium"
+          >
+            Home
+          </Link>
+        </nav>
       </div>
     </header>
   )
