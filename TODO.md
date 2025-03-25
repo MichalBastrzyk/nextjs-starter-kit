@@ -1,6 +1,6 @@
 - [x] Setup shadcn/ui
   - [x] Setup a `shell` component
-  - [ ] Add all of the components
+  - [x] Add all of the components
 - [ ] Setup drizzle-orm
   - [ ] Setup drizzle-kit
   - [ ] Install turso
