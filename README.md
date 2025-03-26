@@ -16,6 +16,37 @@ A modern, production-ready Next.js starter kit with everything you need to build
 - 🎨 **Tailwind Animate** for animations
 - 📱 **Mobile First** approach
 
+## 🔜 Planned Features
+
+- 🔐 **Authentication** with Better-Auth
+
+  - Secure authentication system
+  - OAuth providers support
+  - Session management
+  - Protected routes
+
+- 📧 **Email System** with React Email
+
+  - Beautiful email templates
+  - Transactional emails
+  - Email preview
+  - Responsive design
+
+- 🔄 **tRPC** Integration
+
+  - Type-safe API routes
+  - Real-time capabilities
+  - Automatic type inference
+  - API documentation
+
+- 📊 **Data Tables** with shadcn-table
+  - Sortable columns
+  - Filtering
+  - Pagination
+  - Row selection
+  - Column resizing
+  - Custom cell rendering
+
 ## 📁 Project Structure
 
 ```
