@@ -1,10 +1,22 @@
+import * as React from "react"
 import Link from "next/link"
+
+import { cn } from "@/lib/utils"
 
 import { siteConfig } from "@/config/site"
 
-export function SiteHeader() {
+export function SiteHeader({
+  className,
+  ...props
+}: React.ComponentProps<"header">) {
   return (
-    <header className="border-border/40 bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-sm">
+    <header
+      className={cn(
+        "border-border/40 bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-sm",
+        className
+      )}
+      {...props}
+    >
       <div className="container flex h-14 items-center">
         <Link href="/" className="mr-2 flex items-center md:mr-6 md:space-x-2">
           <span className="hidden font-bold md:inline-block">
