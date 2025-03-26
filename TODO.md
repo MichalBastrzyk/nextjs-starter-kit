@@ -4,22 +4,23 @@
 
 - [ ] Authentication & Authorization
 
-  - [ ] Setup [Better-auth](https://www.better-auth.com) integration
-    - [ ] Install `better-auth` and configure base setup
-    - [ ] Setup environment variables for auth providers
-    - [ ] Create auth client instance
+  - [x] Setup [Better-auth](https://www.better-auth.com) integration
+    - [x] Install `better-auth` and configure base setup
+    - [x] Setup environment variables for auth providers
+    - [x] Create auth client instance
   - [ ] User Management
     - [ ] Extend user schema with role field (admin, user)
-    - [ ] Configure social providers (GitHub, Google)
     - [ ] Implement email verification workflow
-  - [ ] Authentication Methods
-    - [ ] Setup email & password authentication
-    - [ ] Implement social sign-on (GitHub, Google)
-    - [ ] Add magic link authentication (optional)
+  - [x] Authentication Methods
+    - [x] Setup email & password authentication
   - [ ] Auth UI
-    - [ ] Create sign in page with multiple providers
-    - [ ] Create sign up page with validation
-    - [ ] Create password reset flow
+    - [x] Create sign in page
+    - [x] Create sign up page
+    - [ ] Create user password reset flow
+    - [ ] Create user management page
+    - [ ] Create user listing page
+    - [ ] Create user creation page
+    - [ ] Create user editing page
 
 - [ ] API Layer with tRPC
 

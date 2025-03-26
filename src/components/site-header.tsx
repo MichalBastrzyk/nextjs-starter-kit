@@ -2,6 +2,7 @@ import * as React from "react"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
+import { UserButton } from "@/components/auth/user-button"
 
 import { siteConfig } from "@/config/site"
 
@@ -17,7 +18,7 @@ export function SiteHeader({
       )}
       {...props}
     >
-      <div className="container flex h-14 items-center">
+      <div className="container flex h-14 items-center gap-4">
         <Link href="/" className="mr-2 flex items-center md:mr-6 md:space-x-2">
           <span className="hidden font-bold md:inline-block">
             {siteConfig.title}
@@ -31,6 +32,7 @@ export function SiteHeader({
             Home
           </Link>
         </nav>
+        <UserButton />
       </div>
     </header>
   )

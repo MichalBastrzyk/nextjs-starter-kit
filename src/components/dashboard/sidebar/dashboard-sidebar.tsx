@@ -1,15 +1,17 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 
 import {
   IconChartBar,
+  IconCrown,
   IconDashboard,
   IconHelp,
-  IconInnerShadowTop,
   IconListDetails,
   IconReport,
   IconSettings,
+  IconUsers,
 } from "@tabler/icons-react"
 
 import {
@@ -21,9 +23,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { UserButton } from "@/components/auth/user-button"
 import { NavMain } from "@/components/dashboard/sidebar/nav-main"
 import { NavSecondary } from "@/components/dashboard/sidebar/nav-secondary"
-import { NavUser } from "@/components/dashboard/sidebar/nav-user"
+import { Icons } from "@/components/icons"
+
+import { siteConfig } from "@/config/site"
 
 const data = {
   user: {
@@ -52,6 +57,16 @@ const data = {
       url: "/dashboard/analytics",
       icon: IconChartBar,
     },
+    {
+      title: "Clients",
+      url: "/dashboard/clients",
+      icon: IconUsers,
+    },
+    {
+      title: "Administrators",
+      url: "/dashboard/administrators",
+      icon: IconCrown,
+    },
   ],
   navSecondary: [
     {
@@ -79,10 +94,12 @@ export function DashboardSidebar({
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
-              </a>
+              <Link href="/">
+                <Icons.logo className="!size-5" />
+                <span className="text-base font-semibold">
+                  {siteConfig.title}
+                </span>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -92,7 +109,7 @@ export function DashboardSidebar({
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <UserButton />
       </SidebarFooter>
     </Sidebar>
   )
