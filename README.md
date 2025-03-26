@@ -1,36 +1,157 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Starter Kit
 
-## Getting Started
+A modern, production-ready Next.js starter kit with everything you need to build fast, beautiful, and responsive web applications.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- ⚡️ **Next.js 15** with App Router
+- 🎨 **Tailwind CSS** for styling
+- 📦 **TypeScript** for type safety
+- 🎯 **ESLint** & **Prettier** for code quality
+- 📱 **Responsive** design
+- 🎨 **shadcn/ui** components
+- 📊 **Drizzle ORM** for database
+- 🔄 **React Hook Form** for forms
+- 📝 **Zod** for validation
+- 🎨 **Tailwind Animate** for animations
+- 📱 **Mobile First** approach
+
+## 📁 Project Structure
+
+```
+src/
+├── app/              # Next.js app router pages and layouts
+├── components/       # Reusable UI components
+├── lib/             # Utility functions and shared logic
+├── server/          # Server-side code and API routes
+├── config/          # Configuration files
+└── env.js           # Environment variables validation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/yourusername/nextjs-starter-kit.git
+   cd nextjs-starter-kit
+   ```
 
-## Learn More
+2. **Install dependencies**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   bun install
+   # or
+   npm install
+   # or
+   yarn install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Set up environment variables**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   cp .env.example .env
+   ```
 
-## Deploy on Vercel
+   Edit `.env` with your configuration.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Start the development server**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   bun dev
+   # or
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
+
+## 🛠️ Available Scripts
+
+- `dev` - Start development server with Turbopack
+- `build` - Build for production
+- `start` - Start production server
+- `lint` - Run ESLint
+- `lint:fix` - Fix ESLint issues
+- `typecheck` - Run TypeScript compiler check
+- `format:write` - Format code with Prettier
+- `format:check` - Check code formatting
+
+## 🎨 UI Components
+
+This starter kit includes a comprehensive set of UI components from shadcn/ui, which are built on top of Radix UI primitives:
+
+- Accordion
+- Alert Dialog
+- Avatar
+- Button
+- Calendar
+- Card
+- Checkbox
+- Command (Command palette)
+- Dialog
+- Dropdown Menu
+- Form
+- Input
+- Label
+- Navigation Menu
+- Popover
+- Select
+- Sheet
+- Skeleton
+- Slider
+- Switch
+- Table
+- Tabs
+- Textarea
+- Toast
+- Toggle
+- Tooltip
+- And many more...
+
+## 📱 Responsive Design
+
+The starter kit is built with a mobile-first approach and includes:
+
+- Responsive layouts
+- Mobile-friendly navigation
+- Touch-friendly components
+- Adaptive typography
+
+## 📊 Database
+
+Set up with Drizzle ORM for type-safe database operations:
+
+- SQLite by default (easily switchable)
+- Type-safe queries
+- Migration support
+- Schema validation
+
+## 🎯 Best Practices
+
+- TypeScript for type safety
+- ESLint for code quality
+- Prettier for consistent formatting
+- Git hooks for pre-commit checks
+- Environment variable validation
+- Error handling
+- Loading states
+- Error boundaries
+
+## 📚 Documentation
+
+For more information about the technologies used in this starter kit:
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [shadcn/ui Documentation](https://ui.shadcn.com)
+- [Drizzle ORM Documentation](https://orm.drizzle.team)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
