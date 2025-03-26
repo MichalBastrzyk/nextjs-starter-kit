@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 
 import { cn, getBaseUrl } from "@/lib/utils"
-import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 
 import { fontMono, fontSans } from "@/config/fonts"
@@ -40,10 +39,7 @@ export default function RootLayout({
           fontMono.variable
         )}
       >
-        <div className="relative flex min-h-screen flex-col">
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-        </div>
+        {children}
         <TailwindIndicator />
       </body>
     </html>
