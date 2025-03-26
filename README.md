@@ -18,28 +18,29 @@ A modern, production-ready Next.js starter kit with everything you need to build
 
 ## 🔜 Planned Features
 
-- 🔐 **Authentication** with Better-Auth
+- 🔐 **Better-Auth** for authentication
 
   - Secure authentication system
   - OAuth providers support
   - Session management
   - Protected routes
 
-- 📧 **Email System** with React Email
+- 📧 **React Email** for email system
 
   - Beautiful email templates
   - Transactional emails
   - Email preview
   - Responsive design
 
-- 🔄 **tRPC** Integration
+- 🔄 **tRPC** for API integration
 
   - Type-safe API routes
   - Real-time capabilities
   - Automatic type inference
   - API documentation
 
-- 📊 **Data Tables** with shadcn-table
+- 📊 **shadcn-table** for data tables
+
   - Sortable columns
   - Filtering
   - Pagination
@@ -178,6 +179,7 @@ For more information about the technologies used in this starter kit:
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 - [shadcn/ui Documentation](https://ui.shadcn.com)
 - [Drizzle ORM Documentation](https://orm.drizzle.team)
+- [Better-Auth Documentation](https://www.better-auth.com/)
 
 ## 🤝 Contributing
 
