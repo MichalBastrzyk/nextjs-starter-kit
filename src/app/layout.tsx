@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { cn, getBaseUrl } from "@/lib/utils"
+import { Toaster } from "@/components/ui/sonner"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 
 import { fontMono, fontSans } from "@/config/fonts"
@@ -40,6 +41,7 @@ export default function RootLayout({
         )}
       >
         {children}
+        <Toaster />
         <TailwindIndicator />
       </body>
     </html>
