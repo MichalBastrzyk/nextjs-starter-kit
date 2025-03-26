@@ -22,10 +22,7 @@ export const postsTable = t.sqliteTable("posts", {
   ...lifecycleDates,
 })
 
-export type InsertUser = typeof usersTable.$inferInsert
-export type SelectUser = typeof usersTable.$inferSelect
-export type InsertPost = typeof postsTable.$inferInsert
-export type SelectPost = typeof postsTable.$inferSelect
+export type Post = typeof postsTable.$inferSelect
 
 export const usersTable = t.sqliteTable("users", {
   id: t.text().primaryKey(),
@@ -35,6 +32,8 @@ export const usersTable = t.sqliteTable("users", {
   image: t.text(),
   ...lifecycleDates,
 })
+
+export type User = typeof usersTable.$inferSelect
 
 export const sessionsTable = t.sqliteTable("sessions", {
   id: t.text().primaryKey(),
@@ -48,6 +47,8 @@ export const sessionsTable = t.sqliteTable("sessions", {
     .references(() => usersTable.id, { onDelete: "cascade" }),
   ...lifecycleDates,
 })
+
+export type Session = typeof sessionsTable.$inferSelect
 
 export const accountsTable = t.sqliteTable("accounts", {
   id: t.text().primaryKey(),
@@ -67,6 +68,8 @@ export const accountsTable = t.sqliteTable("accounts", {
   ...lifecycleDates,
 })
 
+export type Account = typeof accountsTable.$inferSelect
+
 export const verificationTable = t.sqliteTable("verifications", {
   id: t.text().primaryKey(),
   identifier: t.text().notNull(),
@@ -74,3 +77,5 @@ export const verificationTable = t.sqliteTable("verifications", {
   expiresAt: t.integer({ mode: "timestamp" }).notNull(),
   ...lifecycleDates,
 })
+
+export type Verification = typeof verificationTable.$inferSelect
