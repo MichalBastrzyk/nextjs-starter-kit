@@ -14,13 +14,19 @@ export function getBaseUrl() {
 }
 
 export function formatDate(
-  date: Date | string | number,
+  date: Date | string | number | undefined,
   opts: Intl.DateTimeFormatOptions = {}
 ) {
-  return new Intl.DateTimeFormat(siteConfig.locale, {
-    month: opts.month ?? "long",
-    day: opts.day ?? "numeric",
-    year: opts.year ?? "numeric",
-    ...opts,
-  }).format(new Date(date))
+  if (!date) return ""
+
+  try {
+    return new Intl.DateTimeFormat(siteConfig.locale, {
+      month: opts.month ?? "long",
+      day: opts.day ?? "numeric",
+      year: opts.year ?? "numeric",
+      ...opts,
+    }).format(new Date(date))
+  } catch {
+    return ""
+  }
 }
