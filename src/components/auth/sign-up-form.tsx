@@ -39,7 +39,7 @@ export function SignUpForm({
         toast.error(error.message)
       } else {
         toast.success("Signed up successfully")
-        router.push("/")
+        router.push("/dashboard")
       }
     })
   }
