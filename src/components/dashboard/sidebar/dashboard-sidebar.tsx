@@ -5,7 +5,6 @@ import Link from "next/link"
 
 import {
   IconChartBar,
-  IconCrown,
   IconDashboard,
   IconHelp,
   IconListDetails,
@@ -58,14 +57,9 @@ const data = {
       icon: IconChartBar,
     },
     {
-      title: "Clients",
-      url: "/dashboard/clients",
+      title: "Users",
+      url: "/dashboard/users",
       icon: IconUsers,
-    },
-    {
-      title: "Administrators",
-      url: "/dashboard/administrators",
-      icon: IconCrown,
     },
   ],
   navSecondary: [
