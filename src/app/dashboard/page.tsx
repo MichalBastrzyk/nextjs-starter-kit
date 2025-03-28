@@ -1,4 +1,14 @@
-export default function DashboardMainPage() {
+import { redirect } from "next/navigation"
+
+import { getCurrentSession } from "@/lib/auth-server"
+
+export default async function DashboardMainPage() {
+  const auth = await getCurrentSession()
+
+  if (!auth) {
+    redirect("/sign-in")
+  }
+
   return (
     <div className="flex h-[200vh] flex-1 flex-col">
       <div className="@container/main flex flex-1 flex-col gap-2">

@@ -1,14 +1,23 @@
+import { redirect } from "next/navigation"
+
 import { NuqsAdapter } from "nuqs/adapters/next/app"
 
+import { getCurrentSession } from "@/lib/auth-server"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { DashboardHeader } from "@/components/dashboard/dashboard-header"
 import { DashboardSidebar } from "@/components/dashboard/sidebar/dashboard-sidebar"
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const auth = await getCurrentSession()
+
+  if (!auth) {
+    redirect("/sign-in")
+  }
+
   return (
     <NuqsAdapter>
       <SidebarProvider
