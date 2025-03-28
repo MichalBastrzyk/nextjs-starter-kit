@@ -10,6 +10,8 @@ import { api } from "@/trpc/server"
 import { searchParamsCache } from "./search-params"
 import { UsersTable } from "./users-table"
 
+export const runtime = "edge"
+
 interface UsersPageProps {
   searchParams: Promise<{
     [key: string]: string | string[] | undefined
