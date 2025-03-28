@@ -9,7 +9,10 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]).optional(),
     TURSO_CONNECTION_URL: z.string(),
-    TURSO_AUTH_TOKEN: z.string(),
+    TURSO_AUTH_TOKEN:
+      process.env.NODE_ENV === "production"
+        ? z.string()
+        : z.string().optional(),
     BETTER_AUTH_SECRET: z.string(),
   },
 
