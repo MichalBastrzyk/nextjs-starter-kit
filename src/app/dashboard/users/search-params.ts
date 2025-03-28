@@ -24,6 +24,32 @@ export const searchParamsCache = createSearchParamsCache({
   updatedAt: parseAsArrayOf(z.coerce.number()).withDefault([]),
 })
 
+export const searchParamsZodSchema = z.object({
+  page: z.coerce.number().default(1),
+  perPage: z.coerce.number().default(10),
+  sort: z
+    .array(
+      z.object({
+        id: z.enum([
+          "id",
+          "name",
+          "email",
+          "emailVerified",
+          "image",
+          "createdAt",
+          "updatedAt",
+        ]),
+        desc: z.boolean(),
+      })
+    )
+    .default([{ id: "createdAt", desc: true }]),
+  name: z.string().default(""),
+  email: z.string().default(""),
+  emailVerified: z.boolean().nullable(),
+  createdAt: z.array(z.coerce.number()).default([]),
+  updatedAt: z.array(z.coerce.number()).default([]),
+})
+
 export type UsersSearchParams = Awaited<
   ReturnType<typeof searchParamsCache.parse>
 >

@@ -3,7 +3,8 @@ import * as React from "react"
 import { DataTableSkeleton } from "@/components/data-table/data-table-skeleton"
 import { Shell } from "@/components/shell"
 
-import { getUsers } from "./queries"
+import { api } from "@/trpc/server"
+
 import { searchParamsCache } from "./search-params"
 import { UsersTable } from "./users-table"
 
@@ -17,7 +18,7 @@ export default async function UsersPage(props: UsersPageProps) {
   const searchParams = await props.searchParams
   const search = searchParamsCache.parse(searchParams)
 
-  const getUsersPromise = getUsers(search)
+  const getUsersPromise = api.user.getUsers(search)
 
   return (
     <Shell variant="sidebar">

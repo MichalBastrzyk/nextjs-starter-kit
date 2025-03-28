@@ -6,12 +6,13 @@ import { DataTable } from "@/components/data-table/data-table"
 import { DataTableToolbar } from "@/components/data-table/data-table-toolbar"
 import { useDataTable } from "@/components/hooks/use-data-table"
 
+import type { api } from "@/trpc/server"
+
 import { usersColumns } from "./columns"
-import type { getUsers } from "./queries"
 import { UsersTableToolbarActions } from "./users-table-toolbar-actions"
 
 interface UserTableProps {
-  promise: Promise<Awaited<ReturnType<typeof getUsers>>>
+  promise: Promise<Awaited<ReturnType<typeof api.user.getUsers>>>
 }
 
 export function UsersTable(props: UserTableProps) {

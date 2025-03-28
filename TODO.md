@@ -22,25 +22,6 @@
     - [ ] Create user creation page
     - [ ] Create user editing page
 
-- [ ] API Layer with tRPC
-
-  - [ ] Setup tRPC with TanStack React Query integration
-    - [ ] Install required packages: `@trpc/server`, `@trpc/client`, `@trpc/tanstack-react-query`, `@tanstack/react-query`
-    - [ ] Create tRPC router types for end-to-end typesafety
-    - [ ] Choose and implement integration pattern:
-      - [ ] Context-based pattern with `createTRPCContext` (for SSR support)
-      - [ ] Singleton pattern with `createTRPCOptionsProxy` (for SPAs)
-  - [ ] Configure tRPC client
-    - [ ] Setup HTTP batch link for API communication
-    - [ ] Configure QueryClient with appropriate defaults
-    - [ ] Wrap application with `TRPCProvider`
-  - [ ] Create tRPC routers
-    - [ ] User router for profile management
-    - [ ] Admin router with protected procedures
-  - [ ] Implement auth integration
-    - [ ] Create middleware for session validation
-    - [ ] Add protected procedures using Better-auth session
-
 - [ ] Data Tables & Dashboard Features
   - [ ] Implement Tanstack Table
     - [ ] Create reusable data table component with pagination
@@ -68,3 +49,15 @@
   - [x] dashboard sidebar
   - [x] dashboard header
     - [x] Automatically generate the breadcrumbs
+- [x] API Layer with tRPC
+  - [x] Setup tRPC with TanStack React Query integration
+    - [x] Install required packages: `@trpc/server`, `@trpc/client`, `@trpc/react-query`, `@tanstack/react-query` and `superjson`
+    - [x] Create tRPC router types for end-to-end typesafety
+  - [x] Configure tRPC client
+    - [x] Setup HTTP batch link for API communication
+    - [x] Configure QueryClient with appropriate defaults
+    - [x] Wrap application with `TRPCProvider`
+  - [x] Implement auth integration
+    - [x] Create middleware for session validation
+    - [x] Add protected procedures using Better-auth session
+
