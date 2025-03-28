@@ -1,8 +1,9 @@
 import "server-only"
 
-import { and, asc, count, desc, eq, gte, like, lte } from "drizzle-orm"
+import { and, asc, count, desc, eq, like } from "drizzle-orm"
 
 import { db } from "@/server/db"
+import { dateRange } from "@/server/db/query-utils"
 import { usersTable } from "@/server/db/schema"
 
 import { UsersSearchParams } from "./search-params"
@@ -20,52 +21,10 @@ export async function getUsers(input: UsersSearchParams) {
       ? eq(usersTable.emailVerified, input.emailVerified)
       : undefined,
     input.createdAt.length > 0
-      ? and(
-          input.createdAt[0]
-            ? gte(
-                usersTable.createdAt,
-                (() => {
-                  const date = new Date(input.createdAt[0])
-                  date.setHours(0, 0, 0, 0)
-                  return date
-                })()
-              )
-            : undefined,
-          input.createdAt[1]
-            ? lte(
-                usersTable.createdAt,
-                (() => {
-                  const date = new Date(input.createdAt[1])
-                  date.setHours(23, 59, 59, 999)
-                  return date
-                })()
-              )
-            : undefined
-        )
+      ? dateRange(input.createdAt, usersTable.createdAt)
       : undefined,
     input.updatedAt.length > 0
-      ? and(
-          input.updatedAt[0]
-            ? gte(
-                usersTable.updatedAt,
-                (() => {
-                  const date = new Date(input.updatedAt[0])
-                  date.setHours(0, 0, 0, 0)
-                  return date
-                })()
-              )
-            : undefined,
-          input.updatedAt[1]
-            ? lte(
-                usersTable.updatedAt,
-                (() => {
-                  const date = new Date(input.updatedAt[1])
-                  date.setHours(23, 59, 59, 999)
-                  return date
-                })()
-              )
-            : undefined
-        )
+      ? dateRange(input.updatedAt, usersTable.updatedAt)
       : undefined
   )
 

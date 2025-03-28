@@ -15,10 +15,8 @@ interface UsersPageProps {
 
 export default async function UsersPage(props: UsersPageProps) {
   const searchParams = await props.searchParams
-
   const search = searchParamsCache.parse(searchParams)
 
-  console.log(search)
   const getUsersPromise = getUsers(search)
 
   return (

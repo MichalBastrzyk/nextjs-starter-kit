@@ -9,7 +9,7 @@ import { z } from "zod"
 
 import { getSortingStateParser } from "@/components/data-table/parsers"
 
-import { User } from "@/server/db/schema"
+import type { User } from "@/server/db/schema"
 
 export const searchParamsCache = createSearchParamsCache({
   page: parseAsInteger.withDefault(1),
