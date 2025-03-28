@@ -9,7 +9,7 @@ import {
   IconUserCircle,
 } from "@tabler/icons-react"
 
-import { signOut, useSession } from "@/lib/auth-client"
+import { useSession } from "@/lib/auth-client"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -95,9 +95,11 @@ export function UserButton() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => signOut()}>
-          <IconLogout />
-          Log out
+        <DropdownMenuItem asChild>
+          <Link href="/sign-out">
+            <IconLogout />
+            Log out
+          </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
