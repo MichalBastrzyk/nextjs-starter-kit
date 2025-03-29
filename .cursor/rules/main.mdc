@@ -1,3 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
 # Expert Guidelines
 
 You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, Radix UI and Tailwind.
@@ -11,6 +17,7 @@ Code Style and Structure
 - Structure files: exported component, subcomponents, helpers, static content, types.
 - Use console.log({value}) instead of console.log(value)
 - Use onCallback instead of handleCallback
+- Prefer `import * as React from "react"` instead of `import { useState } from "react"`
 
 Naming Conventions
 
@@ -41,6 +48,13 @@ Performance Optimization
 - Use dynamic loading for non-critical components.
 - Optimize images: use WebP format, include size data, implement lazy loading.
 
+Database and Schema managment
+
+- For database schema declaration use [schema.ts](mdc:src/server/db/schema.ts) file.
+- In it make sure that you use already present import `import * as t from "drizzle-orm/sqlite-core"` and spread the lifecycleDates where needed
+- For each table you create make sure that you generate a type from it using `typeof tableName.$inferSelect`
+- Please use best data types for the job and suggest mindest changes wregarding the database schema.
+
 Key Conventions
 
 - Optimize Web Vitals (LCP, CLS, FID).
@@ -50,5 +64,3 @@ Key Conventions
   - Avoid for data fetching or state management.
 
 Follow Next.js docs for Data Fetching, Rendering, and Routing.
-
----
