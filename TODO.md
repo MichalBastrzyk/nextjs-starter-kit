@@ -23,12 +23,12 @@
     - [ ] Create user editing page
 
 - [ ] Data Tables & Dashboard Features
-  - [ ] Implement Tanstack Table
-    - [ ] Create reusable data table component with pagination
-    - [ ] Add sorting and filtering capabilities
-    - [ ] Create server-side data fetching hooks
+  - [x] Implement Tanstack Table
+    - [x] Create reusable data table component with pagination
+    - [x] Add sorting and filtering capabilities
+    - [x] Use TRPC server side calls of the data fetching
   - [ ] Dashboard Enhancements
-    - [ ] Convert dashboard navigation buttons to links
+    - [x] Convert dashboard navigation buttons to links
     - [ ] Add data visualization components with Recharts
     - [ ] Create dashboard analytics overview page
   - [ ] User Management Interface
