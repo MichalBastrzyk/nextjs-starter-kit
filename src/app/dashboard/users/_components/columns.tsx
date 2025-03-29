@@ -10,6 +10,7 @@ import {
 } from "lucide-react"
 
 import { formatDate } from "@/lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
@@ -56,11 +57,19 @@ export const usersColumns: ColumnDef<User>[] = [
       <DataTableColumnHeader column={column} title="Name" />
     ),
     cell: ({ row }) => (
-      <div className="font-medium">
-        {row.original.name
-          .split(" ")
-          .map((word) => word[0].toUpperCase() + word.slice(1))
-          .join(" ")}
+      <div className="flex items-center gap-2 font-medium">
+        <Avatar>
+          <AvatarImage src={row.original.image ?? undefined} />
+          <AvatarFallback>
+            {row.original.name.charAt(0).toUpperCase()}
+          </AvatarFallback>
+        </Avatar>
+        <span>
+          {row.original.name
+            .split(" ")
+            .map((word) => word[0].toUpperCase() + word.slice(1))
+            .join(" ")}
+        </span>
       </div>
     ),
     meta: {

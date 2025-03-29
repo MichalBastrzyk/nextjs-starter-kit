@@ -7,10 +7,8 @@ import { Shell } from "@/components/shell"
 
 import { api } from "@/trpc/server"
 
+import { UsersTable } from "./_components/users-table"
 import { searchParamsCache } from "./search-params"
-import { UsersTable } from "./users-table"
-
-export const runtime = "edge"
 
 interface UsersPageProps {
   searchParams: Promise<{
