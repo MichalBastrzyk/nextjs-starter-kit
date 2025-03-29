@@ -2,31 +2,22 @@
 
 ## Tasks
 
+### Authentication
+
 - [ ] Authentication & Authorization
 
-  - [x] Setup [Better-auth](https://www.better-auth.com) integration
-    - [x] Install `better-auth` and configure base setup
-    - [x] Setup environment variables for auth providers
-    - [x] Create auth client instance
-  - [ ] User Management
-    - [ ] Extend user schema with role field (admin, user)
-    - [ ] Implement email verification workflow
-  - [x] Authentication Methods
-    - [x] Setup email & password authentication
-  - [ ] Auth UI
-    - [x] Create sign in page
-    - [x] Create sign up page
-    - [ ] Create user password reset flow
-    - [ ] Create user management page
+  - [ ] **Create user password reset flow**
+    - [ ] Intetegrate a library for sending password reset emails.
+  - [ ] Create user management page
+  - [ ] Admin auth ui
     - [ ] Create user listing page
     - [ ] Create user creation page
     - [ ] Create user editing page
+  - [ ] User Management
+    - [ ] Extend user schema with role field (admin, user)
+    - [ ] Implement email verification workflow
 
 - [ ] Data Tables & Dashboard Features
-  - [x] Implement Tanstack Table
-    - [x] Create reusable data table component with pagination
-    - [x] Add sorting and filtering capabilities
-    - [x] Use TRPC server side calls of the data fetching
   - [ ] Dashboard Enhancements
     - [x] Convert dashboard navigation buttons to links
     - [ ] Add data visualization components with Recharts
@@ -37,6 +28,18 @@
 
 ## Done
 
+- [x] Implement Tanstack Table
+  - [x] Create reusable data table component with pagination
+  - [x] Add sorting and filtering capabilities
+  - [x] Use TRPC server side calls of the data fetching
+- [x] Create sign in page
+- [x] Create sign up page
+- [x] Authentication Methods
+  - [x] Setup email & password authentication
+- [x] Setup [Better-auth](https://www.better-auth.com) integration
+  - [x] Install `better-auth` and configure base setup
+  - [x] Setup environment variables for auth providers
+  - [x] Create auth client instance
 - [x] Setup shadcn/ui
   - [x] Setup a `shell` component
   - [x] Add all of the components
@@ -60,4 +63,3 @@
   - [x] Implement auth integration
     - [x] Create middleware for session validation
     - [x] Add protected procedures using Better-auth session
-
