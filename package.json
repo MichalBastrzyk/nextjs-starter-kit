@@ -96,5 +96,8 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   },
+  "overrides": {
+    "prettier": "$prettier"
+  },
   "packageManager": "bun@1.2.6"
 }

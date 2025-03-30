@@ -3,7 +3,6 @@
 ## Tasks
 
 - [ ] Fix: The bug where the nodemailer is being initialized on every request/nextjs page load.
-- [ ] Fix: The bug where the react-email is not happy with current prettier version.
 
 ### Authentication
 
@@ -29,6 +28,7 @@
 
 ## Done
 
+- [x] Fix: The bug where the react-email is not happy with current prettier version.
 - [x] Create user password reset flow
   - [x] Install react-emiail@v4
   - [x] Intetegrate a library for sending password reset emails.
