@@ -47,17 +47,9 @@ src/
 
    ```bash
    bun install
-   # or
-   npm install
-   # or
-   yarn install
    ```
 
 3. **Set up environment variables**
-
-   ```bash
-   cp .env.example .env
-   ```
 
    Edit `.env` with your configuration.
 
@@ -65,10 +57,6 @@ src/
 
    ```bash
    bun dev
-   # or
-   npm run dev
-   # or
-   yarn dev
    ```
 
 5. **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
@@ -88,67 +76,6 @@ src/
 - `db:migrate` - Apply DB migrations
 - `db:studio` - Open Drizzle Studio GUI
 - `email:dev` - Start React Email development server
-
-## 🎨 UI Components
-
-This starter kit includes a comprehensive set of UI components from shadcn/ui, which are built on top of Radix UI primitives:
-
-- Accordion
-- Alert Dialog
-- Avatar
-- Button
-- Calendar
-- Card
-- Checkbox
-- Command (Command palette)
-- Dialog
-- Dropdown Menu
-- Form
-- Input
-- Label
-- Navigation Menu
-- Popover
-- Select
-- Sheet
-- Skeleton
-- Slider
-- Switch
-- Table
-- Tabs
-- Textarea
-- Toast
-- Toggle
-- Tooltip
-- And many more...
-
-## 📱 Responsive Design
-
-The starter kit is built with a mobile-first approach and includes:
-
-- Responsive layouts
-- Mobile-friendly navigation
-- Touch-friendly components
-- Adaptive typography
-
-## 📊 Database
-
-Set up with Drizzle ORM for type-safe database operations:
-
-- SQLite by default (easily switchable)
-- Type-safe queries
-- Migration support
-- Schema validation
-
-## 🎯 Best Practices
-
-- TypeScript for type safety
-- ESLint for code quality
-- Prettier for consistent formatting
-- Git hooks for pre-commit checks
-- Environment variable validation
-- Error handling
-- Loading states
-- Error boundaries
 
 ## 📚 Documentation
 
