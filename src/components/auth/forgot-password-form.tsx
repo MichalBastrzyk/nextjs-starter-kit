@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 
 import { toast } from "sonner"
 
@@ -19,28 +18,24 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-export function SignUpForm({
+export function ForgotPasswordForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-  const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 
   const handleSubmit = async (formData: FormData) => {
     startTransition(async () => {
-      const { error } = await authClient.signUp.email({
-        name: formData.get("name") as string,
+      const { error } = await authClient.forgetPassword({
         email: formData.get("email") as string,
-        password: formData.get("password") as string,
+        redirectTo: "/reset-password",
       })
-
       if (error) {
-        console.error(error)
         toast.error(error.message)
-      } else {
-        toast.success("Signed up successfully")
-        router.push("/dashboard")
+        return
       }
+
+      toast.success("Reset password email sent successfully, check your email")
     })
   }
 
@@ -48,22 +43,14 @@ export function SignUpForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Sign up to your account</CardTitle>
-          <CardDescription>Create an account to get started</CardDescription>
+          <CardTitle className="text-xl">Forgot your password?</CardTitle>
+          <CardDescription>
+            Enter your email to receive a link to reset your password
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form action={handleSubmit}>
             <div className="grid gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="John Doe"
-                  required
-                />
-              </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -74,26 +61,14 @@ export function SignUpForm({
                   required
                 />
               </div>
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                  <a
-                    href="/forgot-password"
-                    className="ml-auto text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </a>
-                </div>
-                <Input id="password" type="password" name="password" required />
-              </div>
               <Button type="submit" className="w-full" disabled={isPending}>
-                {isPending ? "Signing up..." : "Sign up"}
+                {isPending ? "Sending reset email..." : "Send reset email"}
               </Button>
             </div>
             <div className="mt-2 text-center text-sm">
-              Already have an account?{" "}
-              <Link href="/sign-in" className="underline underline-offset-4">
-                Sign in
+              Don&apos;t have an account?{" "}
+              <Link href="/sign-up" className="underline underline-offset-4">
+                Sign up
               </Link>
             </div>
           </form>

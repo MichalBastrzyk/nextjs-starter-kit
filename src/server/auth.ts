@@ -29,5 +29,12 @@ export const auth = betterAuth({
   // Auth Providers configuration
   emailAndPassword: {
     enabled: true,
+    sendResetPasswordEmail: true,
+    sendResetPassword: async ({ user, url }) => {
+      console.log("[AUTH] Sending reset password email, with this data ", {
+        user,
+        url,
+      })
+    },
   },
 })

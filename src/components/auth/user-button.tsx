@@ -9,7 +9,7 @@ import {
   IconUserCircle,
 } from "@tabler/icons-react"
 
-import { useSession } from "@/lib/auth-client"
+import { authClient } from "@/lib/auth-client"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -24,7 +24,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton"
 
 export function UserButton() {
-  const { data: auth, isPending } = useSession()
+  const { data: auth, isPending } = authClient.useSession()
 
   if (isPending) {
     return <Skeleton className="h-10 w-[16rem] rounded-lg p-6" />

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 
 import { toast } from "sonner"
 
-import { signIn } from "@/lib/auth-client"
+import { authClient } from "@/lib/auth-client"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -28,7 +28,7 @@ export function SignInForm({
 
   const handleSubmit = async (formData: FormData) => {
     startTransition(async () => {
-      const { data, error } = await signIn.email({
+      const { data, error } = await authClient.signIn.email({
         email: formData.get("email") as string,
         password: formData.get("password") as string,
       })
@@ -66,7 +66,7 @@ export function SignInForm({
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
                   <a
-                    href="#"
+                    href="/forgot-password"
                     className="ml-auto text-sm underline-offset-4 hover:underline"
                   >
                     Forgot your password?

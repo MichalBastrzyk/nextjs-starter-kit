@@ -6,7 +6,8 @@
 
 - [ ] Authentication & Authorization
 
-  - [ ] **Create user password reset flow**
+  - [x] Create user password reset flow
+    - [ ] **Install react-emiail@v4 with tailwindcss**
     - [ ] Intetegrate a library for sending password reset emails.
   - [ ] Create user management page
   - [ ] Admin auth ui
