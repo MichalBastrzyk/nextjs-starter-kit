@@ -6,9 +6,7 @@
 
 - [ ] Authentication & Authorization
 
-  - [x] Create user password reset flow
-    - [ ] **Install react-emiail@v4 with tailwindcss**
-    - [ ] Intetegrate a library for sending password reset emails.
+  - [ ] Fix: The bug where the nodemailer is being initialized on every request/nextjs page load.
   - [ ] Create user management page
   - [ ] Admin auth ui
     - [ ] Create user listing page
@@ -29,6 +27,9 @@
 
 ## Done
 
+- [x] Create user password reset flow
+  - [x] Install react-emiail@v4
+  - [x] Intetegrate a library for sending password reset emails.
 - [x] Implement Tanstack Table
   - [x] Create reusable data table component with pagination
   - [x] Add sorting and filtering capabilities

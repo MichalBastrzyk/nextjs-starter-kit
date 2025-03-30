@@ -8,12 +8,23 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]).optional(),
+
+    // TURSO
     TURSO_CONNECTION_URL: z.string(),
     TURSO_AUTH_TOKEN:
       process.env.NODE_ENV === "production"
         ? z.string()
         : z.string().optional(),
+
+    // AUTH
     BETTER_AUTH_SECRET: z.string(),
+
+    // EMAIL
+    EMAIL_HOST: z.string(),
+    EMAIL_PORT: z.coerce.number(),
+    EMAIL_USER: z.string(),
+    EMAIL_PASSWORD: z.string(),
+    EMAIL_FROM_ADDRESS: z.string(),
   },
 
   /**
@@ -31,9 +42,17 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+
     TURSO_CONNECTION_URL: process.env.TURSO_CONNECTION_URL,
     TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
+
     BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
+
+    EMAIL_HOST: process.env.EMAIL_HOST,
+    EMAIL_PORT: process.env.EMAIL_PORT,
+    EMAIL_USER: process.env.EMAIL_USER,
+    EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
+    EMAIL_FROM_ADDRESS: process.env.EMAIL_FROM_ADDRESS,
     NEXT_PUBLIC_BETTER_AUTH_URL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL,
   },
   /**
