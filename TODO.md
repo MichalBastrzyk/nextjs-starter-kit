@@ -2,11 +2,13 @@
 
 ## Tasks
 
+- [ ] Fix: The bug where the nodemailer is being initialized on every request/nextjs page load.
+- [ ] Fix: The bug where the react-email is not happy with current prettier version.
+
 ### Authentication
 
 - [ ] Authentication & Authorization
 
-  - [ ] Fix: The bug where the nodemailer is being initialized on every request/nextjs page load.
   - [ ] Create user management page
   - [ ] Admin auth ui
     - [ ] Create user listing page

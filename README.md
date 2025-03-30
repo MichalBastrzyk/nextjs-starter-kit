@@ -11,42 +11,14 @@ A modern, production-ready Next.js starter kit with everything you need to build
 - 📱 **Responsive** design
 - 🎨 **shadcn/ui** components
 - 📊 **Drizzle ORM** for database
+- 🔐 **Better-Auth** for authentication
+- 📧 **React Email** for email system
+- 🔄 **tRPC** for API integration
+- 📊 **shadcn-table** for data tables
 - 🔄 **React Hook Form** for forms
 - 📝 **Zod** for validation
 - 🎨 **Tailwind Animate** for animations
 - 📱 **Mobile First** approach
-
-## 🔜 Planned Features
-
-- 🔐 **Better-Auth** for authentication
-
-  - Secure authentication system
-  - OAuth providers support
-  - Session management
-  - Protected routes
-
-- 📧 **React Email** for email system
-
-  - Beautiful email templates
-  - Transactional emails
-  - Email preview
-  - Responsive design
-
-- 🔄 **tRPC** for API integration
-
-  - Type-safe API routes
-  - Real-time capabilities
-  - Automatic type inference
-  - API documentation
-
-- 📊 **shadcn-table** for data tables
-
-  - Sortable columns
-  - Filtering
-  - Pagination
-  - Row selection
-  - Column resizing
-  - Custom cell rendering
 
 ## 📁 Project Structure
 
@@ -54,10 +26,12 @@ A modern, production-ready Next.js starter kit with everything you need to build
 src/
 ├── app/              # Next.js app router pages and layouts
 ├── components/       # Reusable UI components
-├── lib/             # Utility functions and shared logic
-├── server/          # Server-side code and API routes
-├── config/          # Configuration files
-└── env.js           # Environment variables validation
+├── config/           # Configuration files
+├── emails/           # Email templates using React Email
+├── lib/              # Utility functions and shared logic
+├── server/           # Server-side code (DB, Auth, API logic)
+├── trpc/             # tRPC router definitions and procedures
+└── env.js            # Environment variables validation
 ```
 
 ## 🚀 Getting Started
@@ -109,6 +83,11 @@ src/
 - `typecheck` - Run TypeScript compiler check
 - `format:write` - Format code with Prettier
 - `format:check` - Check code formatting
+- `db:push` - Push schema changes to the database (SQLite)
+- `db:generate` - Generate DB migration files
+- `db:migrate` - Apply DB migrations
+- `db:studio` - Open Drizzle Studio GUI
+- `email:dev` - Start React Email development server
 
 ## 🎨 UI Components
 
