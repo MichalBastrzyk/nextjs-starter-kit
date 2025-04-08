@@ -2,6 +2,7 @@
 
 ## Tasks
 
+- [ ] **Feat: Add permissions to user roles**
 - [ ] Fix: The bug where the nodemailer is being initialized on every request/nextjs page load.
 
 ### Authentication
