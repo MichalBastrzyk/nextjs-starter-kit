@@ -1,5 +1,7 @@
+import * as React from "react"
 import Link from "next/link"
 
+import { Skeleton } from "@/components/ui/skeleton"
 import { ResetPasswordForm } from "@/components/auth/reset-password-form"
 import { Icons } from "@/components/icons"
 
@@ -18,7 +20,9 @@ export default function ResetPassword() {
           </div>
           {siteConfig.title}
         </Link>
-        <ResetPasswordForm />
+        <React.Suspense fallback={<Skeleton className="h-[300px] w-full" />}>
+          <ResetPasswordForm />
+        </React.Suspense>
       </div>
     </div>
   )
