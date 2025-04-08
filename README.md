@@ -13,7 +13,7 @@ A modern, production-ready Next.js starter kit with everything you need to build
 - 📊 **Drizzle ORM** for database
 - 🔐 **Better-Auth** for authentication
 - 📧 **React Email** for email system
-- 🔄 **tRPC** for API integration
+- 🔒 **next-safe-action** for type-safe server actions
 - 📊 **shadcn-table** for data tables
 - 🔄 **React Hook Form** for forms
 - 📝 **Zod** for validation
@@ -30,7 +30,6 @@ src/
 ├── emails/           # Email templates using React Email
 ├── lib/              # Utility functions and shared logic
 ├── server/           # Server-side code (DB, Auth, API logic)
-├── trpc/             # tRPC router definitions and procedures
 └── env.js            # Environment variables validation
 ```
 
@@ -86,6 +85,7 @@ For more information about the technologies used in this starter kit:
 - [shadcn/ui Documentation](https://ui.shadcn.com)
 - [Drizzle ORM Documentation](https://orm.drizzle.team)
 - [Better-Auth Documentation](https://www.better-auth.com/)
+- [next-safe-action Documentation](https://next-safe-action.dev/docs/getting-started)
 
 ## 🤝 Contributing
 
