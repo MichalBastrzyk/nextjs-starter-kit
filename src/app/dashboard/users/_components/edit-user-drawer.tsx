@@ -63,9 +63,9 @@ export function EditUserDrawer({
         email: data.email,
       }),
       {
-        loading: "Saving...",
-        success: "User updated",
-        error: "Failed to update user",
+        loading: "Saving changes...",
+        success: `User ${user.name} updated`,
+        error: `Failed to update user ${user.name}`,
       }
     )
   }
