@@ -2,6 +2,7 @@ import ResetPasswordEmail from "@/emails/reset-password-email"
 import { render } from "@react-email/components"
 import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
+import { admin } from "better-auth/plugins"
 
 import { tryCatch } from "@/lib/try-catch"
 
@@ -31,6 +32,8 @@ export const auth = betterAuth({
       verification: verificationTable,
     },
   }),
+
+  plugins: [admin()],
 
   // Auth Providers configuration
   emailAndPassword: {

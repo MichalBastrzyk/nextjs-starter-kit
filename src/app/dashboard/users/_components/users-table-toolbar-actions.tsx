@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 
 import type { Table } from "@tanstack/react-table"
 import { Download, Plus, Trash2 } from "lucide-react"
@@ -25,9 +26,11 @@ export function UsersTableToolbarActions({
           Delete
         </Button>
       ) : null}
-      <Button size="sm">
-        <Plus />
-        Add User
+      <Button size="sm" asChild>
+        <Link href="/dashboard/users/new">
+          <Plus />
+          Add User
+        </Link>
       </Button>
       <Button
         variant="outline"

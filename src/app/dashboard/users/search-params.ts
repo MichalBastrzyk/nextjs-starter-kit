@@ -20,6 +20,7 @@ export const searchParamsCache = createSearchParamsCache({
   name: parseAsString.withDefault(""),
   email: parseAsString.withDefault(""),
   emailVerified: parseAsBoolean,
+  role: parseAsString.withDefault(""),
   createdAt: parseAsArrayOf(z.coerce.number()).withDefault([]),
   updatedAt: parseAsArrayOf(z.coerce.number()).withDefault([]),
 })
@@ -36,6 +37,10 @@ export const searchParamsZodSchema = z.object({
           "email",
           "emailVerified",
           "image",
+          "role",
+          "banned",
+          "banReason",
+          "banExpires",
           "createdAt",
           "updatedAt",
         ]),

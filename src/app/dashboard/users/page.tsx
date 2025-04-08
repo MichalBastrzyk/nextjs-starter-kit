@@ -5,7 +5,7 @@ import { getCurrentSession } from "@/lib/auth-server"
 import { DataTableSkeleton } from "@/components/data-table/data-table-skeleton"
 import { Shell } from "@/components/shell"
 
-import { api } from "@/trpc/server"
+import { getUsers } from "@/server/queries/users"
 
 import { UsersTable } from "./_components/users-table"
 import { searchParamsCache } from "./search-params"
@@ -26,7 +26,7 @@ export default async function UsersPage(props: UsersPageProps) {
   const searchParams = await props.searchParams
   const search = searchParamsCache.parse(searchParams)
 
-  const getUsersPromise = api.user.getUsers(search)
+  const getUsersPromise = getUsers(search)
 
   return (
     <Shell variant="sidebar">

@@ -30,6 +30,10 @@ export const usersTable = t.sqliteTable("users", {
   email: t.text().notNull().unique(),
   emailVerified: t.integer({ mode: "boolean" }).notNull(),
   image: t.text(),
+  role: t.text(),
+  banned: t.integer({ mode: "boolean" }),
+  banReason: t.text(),
+  banExpires: t.integer({ mode: "timestamp" }),
   ...lifecycleDates,
 })
 
@@ -45,6 +49,7 @@ export const sessionsTable = t.sqliteTable("sessions", {
     .text()
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),
+  impersonatedBy: t.text(),
   ...lifecycleDates,
 })
 

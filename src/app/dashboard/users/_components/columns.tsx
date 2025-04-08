@@ -21,10 +21,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header"
+import { DataTableRowAction } from "@/components/data-table/types"
 
 import { User } from "@/server/db/schema"
 
-export const usersColumns: ColumnDef<User>[] = [
+interface GetUsersTableColumnsProps {
+  setRowAction: React.Dispatch<
+    React.SetStateAction<DataTableRowAction<User> | null>
+  >
+}
+
+export const getUsersTableColumns = ({
+  setRowAction,
+}: GetUsersTableColumnsProps): ColumnDef<User>[] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -64,12 +73,7 @@ export const usersColumns: ColumnDef<User>[] = [
             {row.original.name.charAt(0).toUpperCase()}
           </AvatarFallback>
         </Avatar>
-        <span>
-          {row.original.name
-            .split(" ")
-            .map((word) => word[0].toUpperCase() + word.slice(1))
-            .join(" ")}
-        </span>
+        <span className="capitalize">{row.original.name}</span>
       </div>
     ),
     meta: {
@@ -128,6 +132,57 @@ export const usersColumns: ColumnDef<User>[] = [
     enableColumnFilter: true,
   },
   {
+    id: "role",
+    accessorKey: "role",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Is Admin" />
+    ),
+    cell: ({ row }) => (
+      <div className="flex items-center gap-2">
+        <Checkbox
+          checked={row.original.role === "admin"}
+          aria-label="Select row"
+        />
+        <span>{row.original.role === "admin" ? "Yes" : "No"}</span>
+      </div>
+    ),
+    meta: {
+      label: "Is Admin",
+      variant: "select",
+      icon: UserIcon,
+      options: [
+        {
+          label: "Yes",
+          value: "admin",
+        },
+        {
+          label: "No",
+          value: "user",
+        },
+      ],
+    },
+    enableColumnFilter: true,
+  },
+  {
+    id: "banned",
+    accessorKey: "banned",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Banned" />
+    ),
+    cell: ({ row }) => (
+      <div className="font-medium">{row.original.banned ? "Yes" : "No"}</div>
+    ),
+    meta: {
+      label: "Banned",
+      variant: "select",
+      options: [
+        { label: "Yes", value: "true" },
+        { label: "No", value: "false" },
+      ],
+    },
+    enableColumnFilter: true,
+  },
+  {
     id: "createdAt",
     accessorKey: "createdAt",
     header: ({ column }) => (
@@ -167,7 +222,7 @@ export const usersColumns: ColumnDef<User>[] = [
     id: "actions",
     enableHiding: false,
     size: 100,
-    cell: () => (
+    cell: ({ row }) => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon">
@@ -176,13 +231,25 @@ export const usersColumns: ColumnDef<User>[] = [
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem>
-            {/* TODO: Add edit user modal */}
+          <DropdownMenuItem
+            onSelect={() =>
+              setRowAction({
+                row,
+                variant: "update",
+              })
+            }
+          >
             <Pencil />
             Edit
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            {/* TODO: Add delete confirmation modal */}
+          <DropdownMenuItem
+            onSelect={() =>
+              setRowAction({
+                row,
+                variant: "delete",
+              })
+            }
+          >
             <Trash />
             Delete
           </DropdownMenuItem>

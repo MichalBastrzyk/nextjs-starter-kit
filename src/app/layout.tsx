@@ -9,8 +9,6 @@ import { seoConfig, siteConfig } from "@/config/site"
 
 import "@/app/globals.css"
 
-import { TRPCReactProvider } from "@/trpc/react"
-
 // TODO: Check if there's more to add to the metadata
 export const metadata: Metadata = {
   title: {
@@ -42,11 +40,9 @@ export default function RootLayout({
           fontMono.variable
         )}
       >
-        <TRPCReactProvider>
-          {children}
-          <Toaster />
-          <TailwindIndicator />
-        </TRPCReactProvider>
+        {children}
+        <Toaster />
+        <TailwindIndicator />
       </body>
     </html>
   )
