@@ -11,7 +11,7 @@ A modern, production-ready Next.js starter kit with everything you need to build
 - 📱 **Responsive** design
 - 🎨 **shadcn/ui** components
 - 📊 **Drizzle ORM** for database
-- 🔐 **Better-Auth** for authentication
+- 🔐 **Better-Auth** for authentication with **role-based permissions** with type-safe checks
 - 📧 **React Email** for email system
 - 🔒 **next-safe-action** for type-safe server actions
 - 📊 **shadcn-table** for data tables
