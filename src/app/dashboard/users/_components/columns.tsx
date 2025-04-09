@@ -11,6 +11,7 @@ import {
 
 import { formatDate } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
@@ -85,6 +86,37 @@ export const getUsersTableColumns = ({
     enableColumnFilter: true,
   },
   {
+    id: "role",
+    accessorKey: "role",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Role" />
+    ),
+    cell: ({ row }) => (
+      <Badge
+        variant={row.original.role === "admin" ? "default" : "outline"}
+        className="capitalize"
+      >
+        {row.original.role}
+      </Badge>
+    ),
+    meta: {
+      label: "Role",
+      variant: "multiSelect",
+      icon: UserIcon,
+      options: [
+        {
+          label: "Admin",
+          value: "admin",
+        },
+        {
+          label: "User",
+          value: "user",
+        },
+      ],
+    },
+    enableColumnFilter: true,
+  },
+  {
     id: "email",
     accessorKey: "email",
     header: ({ column }) => (
@@ -126,38 +158,6 @@ export const getUsersTableColumns = ({
         {
           label: "No",
           value: "false",
-        },
-      ],
-    },
-    enableColumnFilter: true,
-  },
-  {
-    id: "role",
-    accessorKey: "role",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Is Admin" />
-    ),
-    cell: ({ row }) => (
-      <div className="flex items-center gap-2">
-        <Checkbox
-          checked={row.original.role === "admin"}
-          aria-label="Select row"
-        />
-        <span>{row.original.role === "admin" ? "Yes" : "No"}</span>
-      </div>
-    ),
-    meta: {
-      label: "Is Admin",
-      variant: "select",
-      icon: UserIcon,
-      options: [
-        {
-          label: "Yes",
-          value: "admin",
-        },
-        {
-          label: "No",
-          value: "user",
         },
       ],
     },

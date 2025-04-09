@@ -7,8 +7,8 @@ import { DataTableToolbar } from "@/components/data-table/data-table-toolbar"
 import type { DataTableRowAction } from "@/components/data-table/types"
 import { useDataTable } from "@/components/hooks/use-data-table"
 
+import { getUsers } from "@/server/data/users"
 import type { User } from "@/server/db/schema"
-import { getUsers } from "@/server/queries/users"
 
 import { getUsersTableColumns } from "./columns"
 import { DeleteUserDialog } from "./delete-user-dialog"

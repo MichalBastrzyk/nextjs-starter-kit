@@ -10,6 +10,7 @@ import { z } from "zod"
 import { getSortingStateParser } from "@/components/data-table/parsers"
 
 import type { User } from "@/server/db/schema"
+import { roles } from "@/server/permissions"
 
 export const searchParamsCache = createSearchParamsCache({
   page: parseAsInteger.withDefault(1),
@@ -20,7 +21,7 @@ export const searchParamsCache = createSearchParamsCache({
   name: parseAsString.withDefault(""),
   email: parseAsString.withDefault(""),
   emailVerified: parseAsBoolean,
-  role: parseAsString.withDefault(""),
+  role: parseAsArrayOf(z.nativeEnum(roles)).withDefault([]),
   createdAt: parseAsArrayOf(z.coerce.number()).withDefault([]),
   updatedAt: parseAsArrayOf(z.coerce.number()).withDefault([]),
 })
@@ -51,6 +52,7 @@ export const searchParamsZodSchema = z.object({
   name: z.string().default(""),
   email: z.string().default(""),
   emailVerified: z.boolean().nullable(),
+  role: z.array(z.nativeEnum(roles)).default([]),
   createdAt: z.array(z.coerce.number()).default([]),
   updatedAt: z.array(z.coerce.number()).default([]),
 })

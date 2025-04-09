@@ -36,3 +36,8 @@ export const admin = ac.newRole({
     Add your custom user permissions here as needed
   })
 */
+
+export const roles = {
+  admin: "admin",
+  user: "user",
+}

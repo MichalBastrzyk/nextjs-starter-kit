@@ -5,7 +5,7 @@ import { getCurrentSession } from "@/lib/auth-server"
 import { DataTableSkeleton } from "@/components/data-table/data-table-skeleton"
 import { Shell } from "@/components/shell"
 
-import { getUsers } from "@/server/queries/users"
+import { getUsers } from "@/server/data/users"
 
 import { UsersTable } from "./_components/users-table"
 import { searchParamsCache } from "./search-params"

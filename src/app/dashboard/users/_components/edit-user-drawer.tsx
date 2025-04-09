@@ -25,15 +25,19 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { useIsMobile } from "@/components/hooks/use-mobile"
 
 import { updateUserAction } from "@/server/actions/users"
 import type { User } from "@/server/db/schema"
-
-const userSchema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-})
+import { roles } from "@/server/permissions"
+import { updateUserSchema } from "@/server/schema/users"
 
 interface EditUserDrawerProps {
   user: User | null
@@ -46,15 +50,17 @@ export function EditUserDrawer({
   const [isPending, startTransition] = React.useTransition()
   const isMobile = useIsMobile()
 
-  const form = useForm<z.infer<typeof userSchema>>({
-    resolver: zodResolver(userSchema),
+  const form = useForm<z.infer<typeof updateUserSchema>>({
+    resolver: zodResolver(updateUserSchema),
     defaultValues: {
+      id: user?.id ?? "",
       name: user?.name ?? "",
       email: user?.email,
+      role: user?.role ?? roles.user,
     },
   })
 
-  const onSubmit = async (data: z.infer<typeof userSchema>) =>
+  const onSubmit = async (data: z.infer<typeof updateUserSchema>) =>
     startTransition(async () => {
       if (!user?.id) return
 
@@ -62,6 +68,7 @@ export function EditUserDrawer({
         id: user?.id,
         name: data.name,
         email: data.email,
+        role: data.role,
       })
 
       if (!result) {
@@ -116,6 +123,34 @@ export function EditUserDrawer({
                     <FormControl>
                       <Input placeholder="User's email" {...field} />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Role</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl className="w-full">
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a role" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value={roles.admin}>
+                          <span className="capitalize">{roles.admin}</span>
+                        </SelectItem>
+                        <SelectItem value={roles.user}>
+                          <span className="capitalize">{roles.user}</span>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}

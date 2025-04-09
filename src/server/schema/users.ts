@@ -1,8 +1,11 @@
 import * as z from "zod"
 
+import { roles } from "../permissions"
+
 export const createUserSchema = z.object({
-  email: z.string().email(),
   name: z.string().min(1),
+  email: z.string().email(),
+  role: z.nativeEnum(roles),
   password: z.string().min(8),
 })
 
@@ -34,7 +37,7 @@ export const getUsersSchema = z.object({
   name: z.string().default(""),
   email: z.string().default(""),
   emailVerified: z.boolean().nullable(),
-  role: z.string().default(""),
+  role: z.array(z.nativeEnum(roles)).default([]),
   createdAt: z.array(z.coerce.number()).default([]),
   updatedAt: z.array(z.coerce.number()).default([]),
 })
@@ -45,6 +48,7 @@ export const updateUserSchema = z.object({
   id: z.string(),
   name: z.string().min(1),
   email: z.string().email(),
+  role: z.nativeEnum(roles),
 })
 
 export type UpdateUserSchema = z.infer<typeof updateUserSchema>

@@ -20,7 +20,7 @@ import { ActionError, authActionClient } from "./action-client"
 export const createUserAction = authActionClient
   .metadata({ actionName: "createUserAction" })
   .schema(createUserSchema)
-  .action(async ({ ctx, parsedInput: { email, name, password } }) => {
+  .action(async ({ ctx, parsedInput }) => {
     const check = await checkUserPermission(ctx.auth.session.userId, {
       user: ["create"],
     })
@@ -30,7 +30,7 @@ export const createUserAction = authActionClient
     }
 
     const user = await auth.api.createUser({
-      body: { email, name, password },
+      body: parsedInput,
     })
 
     if (!user) {
@@ -43,7 +43,7 @@ export const createUserAction = authActionClient
 export const updateUserAction = authActionClient
   .metadata({ actionName: "updateUserAction" })
   .schema(updateUserSchema)
-  .action(async ({ ctx, parsedInput: { id, name, email } }) => {
+  .action(async ({ ctx, parsedInput }) => {
     const check = await checkUserPermission(ctx.auth.session.userId, {
       user: ["update"],
     })
@@ -54,11 +54,8 @@ export const updateUserAction = authActionClient
 
     await db
       .update(usersTable)
-      .set({
-        name,
-        email,
-      })
-      .where(eq(usersTable.id, id))
+      .set(parsedInput)
+      .where(eq(usersTable.id, parsedInput.id))
 
     revalidatePath("/dashboard/users")
   })

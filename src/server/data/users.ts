@@ -1,13 +1,21 @@
 import "server-only"
 
-import { and, asc, count, desc, eq, like } from "drizzle-orm"
+import { and, asc, count, desc, eq, inArray, like } from "drizzle-orm"
+
+import { getCurrentSession } from "@/lib/auth-server"
 
 import { db } from "@/server/db"
 import { dateRange } from "@/server/db/query-utils"
-import { usersTable } from "@/server/db/schema"
+import { usersTable, type User } from "@/server/db/schema"
 import { getUsersSchema, type GetUsersSchema } from "@/server/schema/users"
 
 export const getUsers = async (input: GetUsersSchema) => {
+  const auth = await getCurrentSession()
+
+  if (!auth) {
+    throw new Error("You are not allowed to do this")
+  }
+
   const result = await getUsersSchema.safeParseAsync(input)
 
   if (!result.success) {
@@ -31,7 +39,7 @@ export const getUsers = async (input: GetUsersSchema) => {
     name ? like(usersTable.name, `%${name.toLowerCase()}%`) : undefined,
     email ? like(usersTable.email, `%${email.toLowerCase()}%`) : undefined,
     emailVerified ? eq(usersTable.emailVerified, emailVerified) : undefined,
-    role ? eq(usersTable.role, role) : undefined,
+    role ? inArray(usersTable.role, role) : undefined,
     createdAt.length > 0
       ? dateRange(createdAt, usersTable.createdAt)
       : undefined,
@@ -68,4 +76,20 @@ export const getUsers = async (input: GetUsersSchema) => {
   const pageCount = Math.ceil(total / perPage)
 
   return { data, pageCount }
+}
+
+export const getUser = async (id: string): Promise<User> => {
+  const auth = await getCurrentSession()
+
+  if (!auth) {
+    throw new Error("You are not allowed to do this")
+  }
+
+  const user = await db.select().from(usersTable).where(eq(usersTable.id, id))
+
+  if (user.length === 0) {
+    throw new Error("User not found")
+  }
+
+  return user[0]
 }
