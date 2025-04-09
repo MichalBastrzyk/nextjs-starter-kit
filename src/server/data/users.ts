@@ -39,7 +39,7 @@ export const getUsers = async (input: GetUsersSchema) => {
     name ? like(usersTable.name, `%${name.toLowerCase()}%`) : undefined,
     email ? like(usersTable.email, `%${email.toLowerCase()}%`) : undefined,
     emailVerified ? eq(usersTable.emailVerified, emailVerified) : undefined,
-    role ? inArray(usersTable.role, role) : undefined,
+    role.length > 0 ? inArray(usersTable.role, role) : undefined,
     createdAt.length > 0
       ? dateRange(createdAt, usersTable.createdAt)
       : undefined,
