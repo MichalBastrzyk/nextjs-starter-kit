@@ -4,6 +4,8 @@ import { revalidatePath } from "next/cache"
 
 import { eq, inArray } from "drizzle-orm"
 
+import { checkUserPermission } from "@/lib/auth-server"
+
 import { auth } from "@/server/auth"
 import { db } from "@/server/db"
 import { usersTable } from "@/server/db/schema"
@@ -13,27 +15,43 @@ import {
   updateUserSchema,
 } from "@/server/schema/users"
 
-import { adminActionClient } from "./action-client"
+import { ActionError, authActionClient } from "./action-client"
 
-export const createUserAction = adminActionClient
+export const createUserAction = authActionClient
   .metadata({ actionName: "createUserAction" })
   .schema(createUserSchema)
-  .action(async ({ parsedInput: { email, name, password } }) => {
+  .action(async ({ ctx, parsedInput: { email, name, password } }) => {
+    const check = await checkUserPermission(ctx.auth.session.userId, {
+      user: ["create"],
+    })
+
+    if (!check) {
+      throw new ActionError("You are not allowed to create users")
+    }
+
     const user = await auth.api.createUser({
       body: { email, name, password },
     })
 
     if (!user) {
-      throw new Error("Failed to create user")
+      throw new ActionError("Failed to create user")
     }
 
     revalidatePath("/dashboard/users")
   })
 
-export const updateUserAction = adminActionClient
+export const updateUserAction = authActionClient
   .metadata({ actionName: "updateUserAction" })
   .schema(updateUserSchema)
-  .action(async ({ parsedInput: { id, name, email } }) => {
+  .action(async ({ ctx, parsedInput: { id, name, email } }) => {
+    const check = await checkUserPermission(ctx.auth.session.userId, {
+      user: ["update"],
+    })
+
+    if (!check) {
+      throw new ActionError("You are not allowed to update users")
+    }
+
     await db
       .update(usersTable)
       .set({
@@ -45,10 +63,18 @@ export const updateUserAction = adminActionClient
     revalidatePath("/dashboard/users")
   })
 
-export const deleteUsersAction = adminActionClient
+export const deleteUsersAction = authActionClient
   .metadata({ actionName: "deleteUsersAction" })
   .schema(deleteUsersSchema)
-  .action(async ({ parsedInput: { ids } }) => {
+  .action(async ({ ctx, parsedInput: { ids } }) => {
+    const check = await checkUserPermission(ctx.auth.session.userId, {
+      user: ["delete"],
+    })
+
+    if (!check) {
+      throw new ActionError("You are not allowed to delete users")
+    }
+
     await db.delete(usersTable).where(inArray(usersTable.id, ids))
 
     revalidatePath("/dashboard/users")

@@ -43,6 +43,7 @@ export function EditUserDrawer({
   user,
   ...props
 }: EditUserDrawerProps & React.ComponentProps<typeof Drawer>) {
+  const [isPending, startTransition] = React.useTransition()
   const isMobile = useIsMobile()
 
   const form = useForm<z.infer<typeof userSchema>>({
@@ -53,22 +54,29 @@ export function EditUserDrawer({
     },
   })
 
-  const onSubmit = (data: z.infer<typeof userSchema>) => {
-    if (!user?.id) return
+  const onSubmit = async (data: z.infer<typeof userSchema>) =>
+    startTransition(async () => {
+      if (!user?.id) return
 
-    toast.promise(
-      updateUserAction({
+      const result = await updateUserAction({
         id: user?.id,
         name: data.name,
         email: data.email,
-      }),
-      {
-        loading: "Saving changes...",
-        success: `User ${user.name} updated`,
-        error: `Failed to update user ${user.name}`,
+      })
+
+      if (!result) {
+        toast.error("Failed to update user")
+        return
       }
-    )
-  }
+
+      if (result.serverError) {
+        toast.error(result.serverError)
+        return
+      }
+
+      toast.success(`User ${user.name} updated`)
+      return
+    })
 
   return (
     <Drawer direction={isMobile ? "bottom" : "right"} {...props}>
@@ -113,8 +121,12 @@ export function EditUserDrawer({
                 )}
               />
             </div>
-            <Button type="submit" className="mt-auto w-full">
-              Save
+            <Button
+              type="submit"
+              className="mt-auto w-full"
+              disabled={isPending}
+            >
+              {isPending ? "Saving..." : "Save"}
             </Button>
           </form>
         </Form>

@@ -4,6 +4,7 @@ import * as React from "react"
 
 import type { Row } from "@tanstack/react-table"
 import { Trash2 } from "lucide-react"
+import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -32,6 +33,8 @@ export function DeleteUserDialog({
   onSuccess,
   ...props
 }: DeleteUserDialogProps) {
+  const [isPending, startTransition] = React.useTransition()
+
   return (
     <Dialog {...props}>
       {showTrigger ? (
@@ -58,12 +61,24 @@ export function DeleteUserDialog({
           <Button
             aria-label="Delete selected rows"
             variant="destructive"
+            disabled={isPending}
             onClick={async () => {
-              await deleteUsersAction({ ids: users.map((user) => user.id) })
-              onSuccess?.()
+              startTransition(async () => {
+                const result = await deleteUsersAction({
+                  ids: users.map((user) => user.id),
+                })
+
+                if (result?.serverError) {
+                  toast.error(result.serverError)
+                  return
+                }
+
+                toast.success(`${users.length} users deleted`)
+                onSuccess?.()
+              })
             }}
           >
-            Delete
+            {isPending ? "Deleting..." : "Delete"}
           </Button>
         </DialogFooter>
       </DialogContent>
