@@ -27,9 +27,7 @@ export async function GET() {
 
     return
   } catch (error) {
-    console.error("Sign-out error:", error)
-    // If something goes wrong, still try to redirect to sign-in
-    // redirect("/sign-in")
+    console.error("[AUTH] [signOut] Error:", error)
   } finally {
     redirect("/sign-in")
   }
