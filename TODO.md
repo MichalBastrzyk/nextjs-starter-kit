@@ -14,6 +14,12 @@
     - [ ] Implement images fetching from the S3 bucket using server actions and useSWR hook to fetch the images. (Server actions can be a bad choice here as they're sequential and not parallelizable, but it's the easiest way to do it for now.)
     - [ ] Feat: Add a modal for the image viewer.
 
+- [ ] feat: Add user profile pictures
+  - [ ] Add a profile picture column to the users table
+  - [ ] Add a profile picture uploader
+  - [ ] Add a profile picture cropper modal
+  - [ ] Make sure that this also works with OAUTH users
+
 ## Done
 
 - [x] Configure S3 bucket and add a docker-compose for mocking S3 locally
