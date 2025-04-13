@@ -25,7 +25,7 @@ const config = {
     "^@/components/(.*)$",
     "",
     "^@/server/(.*)$",
-    "^@/trpc/(.*)$",
+    "^@/emails/(.*)$",
     "^@/app/(.*)$",
     "",
     "^@/features/(.*)$",
