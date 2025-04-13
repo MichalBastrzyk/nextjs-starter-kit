@@ -4,6 +4,7 @@
 
 - [ ] Feat: Add playwright tests
 - [ ] Feat: Add vitest tests
+- [ ] feat: Add a hook for the file uploader making the file upload process easier to manage.
 
 - [ ] Feat: Implement email verification workflow
 
@@ -22,6 +23,8 @@
 
 ## Done
 
+- [x] Feat: Add a task for seeding the S3 bucket with mock assets
+- [x] Feat: Add a file upload component from diceui
 - [x] Configure S3 bucket and add a docker-compose for mocking S3 locally
 - [x] Fix: The bug where the nodemailer is being initialized on every request/nextjs page load.
 - [x] Feat: Add permissions to user roles
