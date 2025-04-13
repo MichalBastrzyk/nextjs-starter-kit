@@ -16,6 +16,13 @@ const nextConfig: NextConfig = {
 
   images: {
     formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "4566",
+      },
+    ],
   },
 
   // This is run in the CI already
