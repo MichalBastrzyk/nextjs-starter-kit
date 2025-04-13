@@ -5,10 +5,8 @@ import { tryCatch } from "@/lib/try-catch"
 
 import { env } from "@/env"
 
-let transporter: nodemailer.Transporter
-
-try {
-  transporter = nodemailer.createTransport({
+export const sendEmail = async (mailOptions: Mail.Options) => {
+  const transporter = nodemailer.createTransport({
     host: env.EMAIL_HOST,
     port: env.EMAIL_PORT,
     secure: false, // IMPORTANT: Set to false for STARTTLS.
@@ -22,13 +20,6 @@ try {
     logger: process.env.NODE_ENV === "development",
   })
 
-  console.log("[MAILER] Nodemailer transport created successfully.")
-} catch (error) {
-  console.error("[MAILER] Error creating transporter: ", error)
-}
-
-// Export a function to send mail using the singleton transporter
-export const sendEmail = async (mailOptions: Mail.Options) => {
   if (!transporter) {
     throw new Error(
       "Email transporter is not initialized. Check configuration and logs."
