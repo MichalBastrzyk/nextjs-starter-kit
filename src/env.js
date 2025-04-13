@@ -25,6 +25,13 @@ export const env = createEnv({
     EMAIL_USER: z.string(),
     EMAIL_PASSWORD: z.string(),
     EMAIL_FROM_ADDRESS: z.string(),
+
+    // S3 (default values are for localstack)
+    S3_ACCESS_KEY_ID: z.string().default("test"),
+    S3_SECRET_ACCESS_KEY: z.string().default("test"),
+    S3_REGION: z.string().default("eu-west-1"),
+    S3_ENDPOINT: z.string().default("http://localhost:4566"),
+    S3_BUCKET_NAME: z.string().default("test-bucket"),
   },
 
   /**
