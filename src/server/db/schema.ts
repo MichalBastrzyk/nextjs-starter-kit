@@ -23,6 +23,7 @@ export const postsTable = t.sqliteTable("posts", {
 })
 
 export type Post = typeof postsTable.$inferSelect
+export type NewPost = typeof postsTable.$inferInsert
 
 export const usersTable = t.sqliteTable("users", {
   id: t.text().primaryKey(),
@@ -38,6 +39,7 @@ export const usersTable = t.sqliteTable("users", {
 })
 
 export type User = typeof usersTable.$inferSelect
+export type NewUser = typeof usersTable.$inferInsert
 
 export const sessionsTable = t.sqliteTable("sessions", {
   id: t.text().primaryKey(),
@@ -54,6 +56,7 @@ export const sessionsTable = t.sqliteTable("sessions", {
 })
 
 export type Session = typeof sessionsTable.$inferSelect
+export type NewSession = typeof sessionsTable.$inferInsert
 
 export const accountsTable = t.sqliteTable("accounts", {
   id: t.text().primaryKey(),
@@ -74,6 +77,7 @@ export const accountsTable = t.sqliteTable("accounts", {
 })
 
 export type Account = typeof accountsTable.$inferSelect
+export type NewAccount = typeof accountsTable.$inferInsert
 
 export const verificationTable = t.sqliteTable("verifications", {
   id: t.text().primaryKey(),
@@ -84,3 +88,4 @@ export const verificationTable = t.sqliteTable("verifications", {
 })
 
 export type Verification = typeof verificationTable.$inferSelect
+export type NewVerification = typeof verificationTable.$inferInsert
