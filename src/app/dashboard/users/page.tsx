@@ -3,7 +3,12 @@ import { redirect } from "next/navigation"
 
 import { getCurrentSession } from "@/lib/auth-server"
 import { DataTableSkeleton } from "@/components/data-table/data-table-skeleton"
-import { Shell } from "@/components/shell"
+import {
+  Shell,
+  ShellDescription,
+  ShellHeading,
+  ShellTitle,
+} from "@/components/shell"
 
 import { getUsers } from "@/server/data/users"
 
@@ -30,6 +35,10 @@ export default async function UsersPage(props: UsersPageProps) {
 
   return (
     <Shell variant="sidebar">
+      <ShellHeading>
+        <ShellTitle>Users</ShellTitle>
+        <ShellDescription>Manage your users.</ShellDescription>
+      </ShellHeading>
       <React.Suspense
         fallback={<DataTableSkeleton columnCount={7} filterCount={5} />}
       >

@@ -34,3 +34,44 @@ export function Shell({
     <Comp className={cn(shellVariants({ variant }), className)} {...props} />
   )
 }
+
+interface ShellHeadingProps extends React.ComponentProps<"div"> {
+  as?: React.ElementType
+}
+
+export function ShellHeading({
+  className,
+  as: Comp = "div",
+  ...props
+}: ShellHeadingProps) {
+  return <Comp className={cn("space-y-2", className)} {...props} />
+}
+
+interface ShellTitleProps extends React.ComponentProps<"h1"> {
+  as?: React.ElementType
+}
+
+export function ShellTitle({
+  className,
+  as: Comp = "h1",
+  ...props
+}: ShellTitleProps) {
+  return (
+    <Comp
+      className={cn("text-3xl font-bold tracking-tight", className)}
+      {...props}
+    />
+  )
+}
+
+interface ShellDescriptionProps extends React.ComponentProps<"p"> {
+  as?: React.ElementType
+}
+
+export function ShellDescription({
+  className,
+  as: Comp = "p",
+  ...props
+}: ShellDescriptionProps) {
+  return <Comp className={cn("text-muted-foreground", className)} {...props} />
+}
