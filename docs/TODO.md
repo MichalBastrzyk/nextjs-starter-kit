@@ -11,7 +11,7 @@
 - [ ] Feat: Implement email verification workflow
 
   - [ ] page saying that the email has been sent and a button to resend the email
-  - [ ] email template for the verification email
+  - [x] email template for the verification email
 
   - [ ] Feat: Add a infinite scroll grid of images like the one that is in wordpress.
     - [ ] Implement images fetching from the S3 bucket using server actions and useSWR hook to fetch the images. (Server actions can be a bad choice here as they're sequential and not parallelizable, but it's the easiest way to do it for now.)

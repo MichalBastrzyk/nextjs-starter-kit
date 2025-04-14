@@ -1,4 +1,3 @@
-import ResetPasswordEmail from "@/emails/reset-password-email"
 import { render } from "@react-email/components"
 import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
@@ -13,6 +12,8 @@ import {
   usersTable,
   verificationTable,
 } from "@/server/db/schema"
+import ResetPasswordEmail from "@/emails/reset-password-email"
+import VerifyEmailEmail from "@/emails/verify-email-email"
 
 import { env } from "@/env"
 
@@ -66,6 +67,30 @@ export const auth = betterAuth({
       }
 
       console.log("[AUTH] Reset password email sent", data)
+    },
+    requireEmailVerification: true,
+  },
+  emailVerification: {
+    enabled: true,
+    sendVerificationEmail: async ({ user, url }) => {
+      const emailHtml = await render(
+        <VerifyEmailEmail user={user} verifyEmailLink={url} />
+      )
+
+      const { data, error } = await tryCatch(
+        sendEmail({
+          to: user.email,
+          subject: "Verify your email address",
+          html: emailHtml,
+        })
+      )
+
+      if (error) {
+        console.error("[AUTH] Error sending verification email: ", error)
+        return
+      }
+
+      console.log("[AUTH] Verification email sent", data)
     },
   },
 })
