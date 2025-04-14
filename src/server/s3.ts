@@ -10,7 +10,7 @@ export const s3 = new S3Client({
     secretAccessKey: env.S3_SECRET_ACCESS_KEY,
   },
   // LocalStack doesn't support virtual host style
-  forcePathStyle: env.NODE_ENV === "production" ? false : true,
+  forcePathStyle: env.S3_FORCE_PATH_STYLE,
 })
 
 export const BUCKET_NAME = env.S3_BUCKET_NAME
