@@ -36,11 +36,20 @@ This document outlines the requirements for implementing a file upload system wi
 
 ### Frontend Implementation
 
-- [ ] Create reusable React components using TypeScript
+- [ ] Utilize the existing `FileUpload` component from `src/components/ui/file-upload.tsx` for the UI
 - [ ] Implement as Server Components where possible, using `"use client"` only when necessary
+- [ ] Create wrapper components that connect the `FileUpload` components to S3 operations
 - [ ] Integrate with Shadcn UI and Radix UI for consistent design
 - [ ] Responsive design using Tailwind CSS (mobile-first approach using container queries)
-- [ ] design responsiveAccessible according to WCAG 2.1 AA standards
+- [ ] Design responsive accessible according to WCAG 2.1 AA standards
+
+### Component Integration
+
+- [ ] Implement custom hooks to connect `FileUpload` with S3 operations
+- [ ] Use the `onUpload` callback to handle S3 presigned URL generation and uploads
+- [ ] Create utility functions to handle various component events (onFileAccept, onFileReject, etc.)
+- [ ] Implement progress tracking using the component's built-in progress indicators
+- [ ] Add custom validation to ensure only allowed image types are uploaded
 
 ### Backend Implementation
 
@@ -83,12 +92,12 @@ This document outlines the requirements for implementing a file upload system wi
 
 ## UI/UX Requirements
 
-- [ ] Intuitive drag-and-drop interface
-- [ ] Clear visual feedback during upload process
-- [ ] Error states with helpful messages
-- [ ] Loading states with appropriate fallbacks
-- [ ] Modern, responsive design aligned with application style guide
-- [ ] Accessibility considerations (keyboard navigation, screen readers)
+- [ ] Utilize the built-in drag-and-drop interface from `FileUpload` component
+- [ ] Leverage the component's progress indicators for clear visual feedback
+- [ ] Implement appropriate error states using the component's error handling
+- [ ] Create consistent loading states with appropriate fallbacks
+- [ ] Ensure the component styling aligns with the application style guide
+- [ ] Verify accessibility compatibility of the component (keyboard navigation, screen readers)
 
 ## Security Requirements
 
