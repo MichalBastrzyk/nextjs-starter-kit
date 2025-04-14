@@ -2,6 +2,8 @@
 
 ## Tasks
 
+- [x] docs: Write a requirements document for implementing the image uploader with the S3 bucket.
+
 - [ ] Feat: Add playwright tests
 - [ ] Feat: Add vitest tests
 - [ ] feat: Add a hook for the file uploader making the file upload process easier to manage.
