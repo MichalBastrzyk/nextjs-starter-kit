@@ -34,7 +34,7 @@ export const sendEmail = async (mailOptions: Mail.Options) => {
   const { data, error } = await tryCatch(
     transporter.sendMail({
       ...mailOptions,
-      from: mailOptions.from || env.EMAIL_FROM_ADDRESS,
+      from: mailOptions.from ?? env.EMAIL_FROM_ADDRESS,
     })
   )
 

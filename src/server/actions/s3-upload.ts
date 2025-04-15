@@ -22,7 +22,7 @@ import { BUCKET_NAME, s3 } from "@/server/s3"
  * Generates a unique S3 object key for an image
  */
 function generateS3Key(filename: string, userId: string): string {
-  const extension = filename.split(".").pop() || ""
+  const extension = filename.split(".").pop() ?? ""
   const uuid = randomUUID()
   return `uploads/${userId}/${uuid}.${extension}`
 }
@@ -32,13 +32,12 @@ function generateS3Key(filename: string, userId: string): string {
  */
 export async function getPresignedUploadUrl(
   filename: string,
-  contentType: string,
-  contentLength: number
+  contentType: string
 ) {
   const session = await getCurrentSession()
 
   // Check if user is authenticated
-  if (!session || !session.user || !session.user.id) {
+  if (!session?.user?.id) {
     throw new Error("Unauthorized")
   }
 
@@ -102,7 +101,7 @@ export async function saveImageMetadata({
   const session = await getCurrentSession()
 
   // Check if user is authenticated
-  if (!session || !session.user || !session.user.id) {
+  if (!session?.user?.id) {
     throw new Error("Unauthorized")
   }
 
@@ -132,7 +131,7 @@ export async function deleteImage(imageId: string) {
   const session = await getCurrentSession()
 
   // Check if user is authenticated
-  if (!session || !session.user || !session.user.id) {
+  if (!session?.user?.id) {
     throw new Error("Unauthorized")
   }
 
@@ -171,7 +170,7 @@ export async function getUserImages() {
   const session = await getCurrentSession()
 
   // Check if user is authenticated
-  if (!session || !session.user || !session.user.id) {
+  if (!session?.user?.id) {
     throw new Error("Unauthorized")
   }
 

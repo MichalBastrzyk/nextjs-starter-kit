@@ -22,6 +22,7 @@
 
 ## Done
 
+- [x] Feat: Add more eslint plugins and rules to make the codebase more consistent.
 - [x] feat: Add a hook for the file uploader making the file upload process easier to manage.
 - [x] docs: Write a requirements document for implementing the image uploader with the S3 bucket.
 - [x] Feat: Add a task for seeding the S3 bucket with mock assets

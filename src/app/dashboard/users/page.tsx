@@ -16,9 +16,7 @@ import { UsersTable } from "./_components/users-table"
 import { searchParamsCache } from "./search-params"
 
 interface UsersPageProps {
-  searchParams: Promise<{
-    [key: string]: string | string[] | undefined
-  }>
+  searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
 export default async function UsersPage(props: UsersPageProps) {

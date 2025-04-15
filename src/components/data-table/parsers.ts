@@ -22,6 +22,7 @@ export const getSortingStateParser = <TData>(
   return createParser({
     parse: (value) => {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const parsed = JSON.parse(value)
         const result = z.array(sortingItemSchema).safeParse(parsed)
 
@@ -68,6 +69,7 @@ export const getFiltersStateParser = <TData>(
   return createParser({
     parse: (value) => {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const parsed = JSON.parse(value)
         const result = z.array(filterItemSchema).safeParse(parsed)
 

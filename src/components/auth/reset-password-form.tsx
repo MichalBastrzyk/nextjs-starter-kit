@@ -30,7 +30,7 @@ export function ResetPasswordForm({
     startTransition(async () => {
       const { error } = await authClient.resetPassword({
         newPassword: formData.get("password") as string,
-        token: searchParams.get("token") as string,
+        token: searchParams.get("token")!,
       })
 
       if (error) {

@@ -5,7 +5,7 @@ import type { DataTableConfig } from "@/config/data-table"
 import type { FilterItemSchema } from "./parsers"
 
 declare module "@tanstack/react-table" {
-  // biome-ignore lint/correctness/noUnusedVariables: <explanation>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface ColumnMeta<TData extends RowData, TValue> {
     label?: string
     placeholder?: string

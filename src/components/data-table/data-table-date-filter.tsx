@@ -111,7 +111,7 @@ export function DataTableDateFilter<TData>({
   const hasValue = React.useMemo(() => {
     if (multiple) {
       if (!getIsDateRange(selectedDates)) return false
-      return selectedDates.from || selectedDates.to
+      return selectedDates.from ?? selectedDates.to
     }
     if (!Array.isArray(selectedDates)) return false
     return selectedDates.length > 0
@@ -129,7 +129,7 @@ export function DataTableDateFilter<TData>({
     if (multiple) {
       if (!getIsDateRange(selectedDates)) return null
 
-      const hasSelectedDates = selectedDates.from || selectedDates.to
+      const hasSelectedDates = selectedDates.from ?? selectedDates.to
       const dateText = hasSelectedDates
         ? formatDateRange(selectedDates)
         : "Select date range"

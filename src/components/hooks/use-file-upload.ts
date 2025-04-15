@@ -28,11 +28,9 @@ import {
  */
 export function useFileUploader({
   maxSize = 5 * 1024 * 1024, // 5MB
-  maxFiles = 5,
   accept = "image/*",
 }: {
   maxSize?: number
-  maxFiles?: number
   accept?: string
 }) {
   const [files, setFiles] = React.useState<File[]>([])
@@ -61,8 +59,7 @@ export function useFileUploader({
               // Get a presigned URL from the server
               const { presignedUrl, objectKey } = await getPresignedUploadUrl(
                 file.name,
-                file.type,
-                file.size
+                file.type
               )
 
               // Use XMLHttpRequest for progress tracking

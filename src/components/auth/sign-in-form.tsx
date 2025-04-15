@@ -37,7 +37,7 @@ export function SignInForm({
         toast.error(error.message)
       } else {
         toast.success("Signed in successfully")
-        router.push(data.url || "/dashboard")
+        router.push(data.url ?? "/dashboard")
       }
     })
   }

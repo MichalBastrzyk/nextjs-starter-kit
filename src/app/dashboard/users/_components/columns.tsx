@@ -1,4 +1,4 @@
-import { ColumnDef } from "@tanstack/react-table"
+import type { ColumnDef } from "@tanstack/react-table"
 import {
   CalendarIcon,
   CheckCircleIcon,
@@ -22,9 +22,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header"
-import { DataTableRowAction } from "@/components/data-table/types"
+import type { DataTableRowAction } from "@/components/data-table/types"
 
-import { User } from "@/server/db/schema"
+import type { User } from "@/server/db/schema"
 
 interface GetUsersTableColumnsProps {
   setRowAction: React.Dispatch<

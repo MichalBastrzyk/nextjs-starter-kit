@@ -4,7 +4,7 @@ import { cache } from "react"
 import { headers } from "next/headers"
 
 import { auth } from "@/server/auth"
-import { ac } from "@/server/permissions"
+import type { ac } from "@/server/permissions"
 
 type Session = NonNullable<
   Awaited<ReturnType<typeof auth.api.getSession>>
