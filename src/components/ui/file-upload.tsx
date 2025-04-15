@@ -4,6 +4,7 @@ import * as React from "react"
 
 import { Slot } from "@radix-ui/react-slot"
 import {
+  CheckIcon,
   FileArchiveIcon,
   FileAudioIcon,
   FileCodeIcon,
@@ -1085,6 +1086,11 @@ const FileUploadItemPreview = React.forwardRef<
     >
       {onPreviewRender(itemContext.fileState.file)}
       {children}
+      {itemContext.fileState.status === "success" && (
+        <span className="absolute bottom-0 right-0 z-10 m-0.5 flex items-center justify-center rounded-full border border-white/80 bg-black/70 p-0.5 shadow-lg">
+          <CheckIcon className="size-2 text-white" />
+        </span>
+      )}
     </ItemPreviewPrimitive>
   )
 })
@@ -1356,7 +1362,9 @@ const ItemDelete = FileUploadItemDelete
 const Clear = FileUploadClear
 
 export {
+  // Main component
   FileUpload,
+  // Compound components
   FileUploadDropzone,
   FileUploadTrigger,
   FileUploadList,
@@ -1366,7 +1374,9 @@ export {
   FileUploadItemProgress,
   FileUploadItemDelete,
   FileUploadClear,
-  //
+  // Context
+  FileUploadItemContext,
+  // Aliases
   Root,
   Dropzone,
   Trigger,
@@ -1377,6 +1387,6 @@ export {
   ItemProgress,
   ItemDelete,
   Clear,
-  //
+  // Hooks
   useStore as useFileUpload,
 }
