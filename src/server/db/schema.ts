@@ -89,3 +89,24 @@ export const verificationTable = t.sqliteTable("verifications", {
 
 export type Verification = typeof verificationTable.$inferSelect
 export type NewVerification = typeof verificationTable.$inferInsert
+
+export const imagesTable = t.sqliteTable("images", {
+  id: t.text().primaryKey(),
+  originalFilename: t.text().notNull(),
+  size: t.integer().notNull(),
+  mimeType: t.text().notNull(),
+  width: t.integer(),
+  height: t.integer(),
+  s3ObjectKey: t.text().notNull(),
+  s3BucketName: t.text().notNull(),
+  cdnUrl: t.text(),
+  isPublic: t.integer({ mode: "boolean" }).notNull().default(true),
+  userId: t
+    .text()
+    .notNull()
+    .references(() => usersTable.id, { onDelete: "cascade" }),
+  ...lifecycleDates,
+})
+
+export type Image = typeof imagesTable.$inferSelect
+export type NewImage = typeof imagesTable.$inferInsert

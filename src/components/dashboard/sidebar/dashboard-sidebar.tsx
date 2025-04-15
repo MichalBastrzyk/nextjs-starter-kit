@@ -8,6 +8,7 @@ import {
   IconDashboard,
   IconHelp,
   IconListDetails,
+  IconPhoto,
   IconReport,
   IconSettings,
   IconUsers,
@@ -55,6 +56,11 @@ const data = {
       title: "Analytics",
       url: "/dashboard/analytics",
       icon: IconChartBar,
+    },
+    {
+      title: "Images",
+      url: "/dashboard/images",
+      icon: IconPhoto,
     },
     {
       title: "Users",
