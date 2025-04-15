@@ -21,12 +21,12 @@ This document outlines the requirements for implementing a file upload system wi
 - [x] View uploaded images in a gallery/list view
 - [ ] Delete uploaded images
 - [ ] Replace/update existing images
-- [ ] Add metadata to images (title, description, tags)
+- [ ] Add metadata to images (alt text)
 - [ ] Search/filter images by metadata
 
 ### Image Processing
 
-- [ ] Automatic image resizing and optimization
+- [x] Automatic image resizing and optimization (using nextjs image component)
 - [x] Generate thumbnails for previews
 - [x] Support for common image formats (JPEG, PNG, WebP, GIF)
 - [x] Maximum file size constraints (configurable)
