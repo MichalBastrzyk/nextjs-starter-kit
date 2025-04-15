@@ -22,6 +22,7 @@
 
 ## Done
 
+- [x] Feat: Add a check icon when the file is uploaded
 - [x] Feat: Add more eslint plugins and rules to make the codebase more consistent.
 - [x] feat: Add a hook for the file uploader making the file upload process easier to manage.
 - [x] docs: Write a requirements document for implementing the image uploader with the S3 bucket.
