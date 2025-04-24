@@ -10,7 +10,7 @@ import {
 } from "@tabler/icons-react"
 
 import { authClient } from "@/lib/auth-client"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -45,8 +45,9 @@ export function UserButton() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button size="lg" variant="outline" className="p-6">
-          <Avatar className="h-8 w-8 rounded-lg grayscale">
-            <AvatarFallback className="rounded-lg">
+          <Avatar className="size-8">
+            <AvatarImage src={auth.user.image ?? undefined} />
+            <AvatarFallback className="size-8">
               {auth.user.name
                 .split(" ")
                 .map((name) => name.charAt(0))
@@ -69,8 +70,9 @@ export function UserButton() {
       >
         <DropdownMenuLabel className="p-0 font-normal">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-            <Avatar className="h-8 w-8 rounded-lg">
-              <AvatarFallback className="rounded-lg">
+            <Avatar className="size-8">
+              <AvatarImage src={auth.user.image ?? undefined} />
+              <AvatarFallback>
                 {auth.user.name
                   .split(" ")
                   .map((name) => name.charAt(0))
