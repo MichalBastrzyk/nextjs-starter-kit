@@ -3,7 +3,10 @@
 import * as React from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 import { toast } from "sonner"
+import type { z } from "zod"
 
 import { authClient } from "@/lib/auth-client"
 import { cn } from "@/lib/utils"
@@ -15,8 +18,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+
+import { resetPasswordSchema } from "@/server/schema/auth"
 
 export function ResetPasswordForm({
   className,
@@ -26,10 +38,18 @@ export function ResetPasswordForm({
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 
-  const handleSubmit = async (formData: FormData) => {
+  const form = useForm<z.infer<typeof resetPasswordSchema>>({
+    resolver: zodResolver(resetPasswordSchema),
+    defaultValues: {
+      newPassword: "",
+      confirmPassword: "",
+    },
+  })
+
+  async function onSubmit(input: z.infer<typeof resetPasswordSchema>) {
     startTransition(async () => {
       const { error } = await authClient.resetPassword({
-        newPassword: formData.get("password") as string,
+        newPassword: input.newPassword,
         token: searchParams.get("token")!,
       })
 
@@ -54,23 +74,47 @@ export function ResetPasswordForm({
           <CardDescription>Enter your new password</CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={handleSubmit}>
-            <div className="grid gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  name="password"
-                  placeholder="********"
-                  required
-                />
-              </div>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <FormField
+                control={form.control}
+                name="newPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>New Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="********"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Confirm Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="********"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <Button type="submit" className="w-full" disabled={isPending}>
                 {isPending ? "Resetting password..." : "Reset password"}
               </Button>
-            </div>
-          </form>
+            </form>
+          </Form>
         </CardContent>
       </Card>
     </div>

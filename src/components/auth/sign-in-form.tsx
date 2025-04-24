@@ -4,7 +4,10 @@ import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 import { toast } from "sonner"
+import type { z } from "zod"
 
 import { authClient } from "@/lib/auth-client"
 import { cn } from "@/lib/utils"
@@ -16,8 +19,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Separator } from "@/components/ui/separator"
+import { PasswordInput } from "@/components/auth/password-input"
+
+import { signInSchema } from "@/server/schema/auth"
 
 export function SignInForm({
   className,
@@ -26,18 +40,27 @@ export function SignInForm({
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 
-  const handleSubmit = async (formData: FormData) => {
+  const form = useForm<z.infer<typeof signInSchema>>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  })
+
+  async function onSubmit(data: z.infer<typeof signInSchema>) {
     startTransition(async () => {
-      const { data, error } = await authClient.signIn.email({
-        email: formData.get("email") as string,
-        password: formData.get("password") as string,
+      const { data: responseData, error } = await authClient.signIn.email({
+        email: data.email,
+        password: data.password,
       })
 
       if (error) {
         toast.error(error.message)
+        return
       } else {
         toast.success("Signed in successfully")
-        router.push(data.url ?? "/dashboard")
+        router.push(responseData?.url ?? "/dashboard")
       }
     })
   }
@@ -49,42 +72,55 @@ export function SignInForm({
           <CardTitle className="text-xl">Sign in to your account</CardTitle>
           <CardDescription>Login with your email and password</CardDescription>
         </CardHeader>
-        <CardContent>
-          <form action={handleSubmit}>
-            <div className="grid gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="m@example.com"
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                  <a
-                    href="/forgot-password"
-                    className="ml-auto text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </a>
-                </div>
-                <Input id="password" type="password" name="password" required />
-              </div>
+        <CardContent className="space-y-4">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="m@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex items-center justify-between">
+                      <FormLabel>Password</FormLabel>
+                      <Link
+                        href="/forgot-password"
+                        className="text-sm underline-offset-4 hover:underline"
+                      >
+                        Forgot your password?
+                      </Link>
+                    </div>
+                    <FormControl>
+                      <PasswordInput {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <Button type="submit" className="w-full" disabled={isPending}>
-                {isPending ? "Logging in..." : "Login"}
+                {isPending ? "Signing in..." : "Sign in"}
               </Button>
-            </div>
-            <div className="mt-2 text-center text-sm">
-              Don&apos;t have an account?{" "}
-              <Link href="/sign-up" className="underline underline-offset-4">
-                Sign up
-              </Link>
-            </div>
-          </form>
+              <Separator />
+              <div className="mt-2 text-center text-sm">
+                Don&apos;t have an account?{" "}
+                <Link href="/sign-up" className="underline underline-offset-4">
+                  Sign up
+                </Link>
+              </div>
+            </form>
+          </Form>
         </CardContent>
       </Card>
       <div className="text-muted-foreground [&_a]:hover:text-primary text-balance text-center text-xs [&_a]:underline [&_a]:underline-offset-4">

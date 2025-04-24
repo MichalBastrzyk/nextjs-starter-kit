@@ -11,7 +11,7 @@ import {
   Text,
 } from "@react-email/components"
 
-interface VerifyEmailEmailProps {
+interface VerifyEmailMailProps {
   user: {
     id: string
     name: string
@@ -24,10 +24,10 @@ interface VerifyEmailEmailProps {
   verifyEmailLink?: string
 }
 
-export const VerifyEmailEmail = ({
+export const VerifyEmailMail = ({
   user,
   verifyEmailLink,
-}: VerifyEmailEmailProps) => {
+}: VerifyEmailMailProps) => {
   return (
     <Html>
       <Head />
@@ -35,10 +35,11 @@ export const VerifyEmailEmail = ({
         <Preview>Verify your email address</Preview>
         <Container style={container}>
           <Section>
-            <Text style={text}>Hi {user?.name?.split(" ")[0].trim()},</Text>
             <Text style={text}>
-              Thanks for signing up! Please verify your email address by
-              clicking the button below:
+              Hi {user?.name?.split(" ")?.[0]?.trim() ?? "there"},
+            </Text>
+            <Text style={text}>
+              Please verify your email address by clicking the button below:
             </Text>
             <Button style={button} href={verifyEmailLink}>
               Verify Email
@@ -58,14 +59,14 @@ export const VerifyEmailEmail = ({
   )
 }
 
-VerifyEmailEmail.PreviewProps = {
+VerifyEmailMail.PreviewProps = {
   user: {
     name: "Alan",
   },
   verifyEmailLink: "https://example.com/verify-email", // Example link
-} as VerifyEmailEmailProps
+} as VerifyEmailMailProps
 
-export default VerifyEmailEmail
+export default VerifyEmailMail
 
 const main = {
   backgroundColor: "#f6f9fc",

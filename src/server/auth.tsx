@@ -12,8 +12,9 @@ import {
   usersTable,
   verificationTable,
 } from "@/server/db/schema"
-import ResetPasswordEmail from "@/emails/reset-password-email"
-import VerifyEmailEmail from "@/emails/verify-email-email"
+import ChangeEmailMail from "@/emails/email-change-mail"
+import ResetPasswordMail from "@/emails/reset-password-mail"
+import VerifyEmailMail from "@/emails/verify-email-mail"
 
 import { env } from "@/env"
 
@@ -44,13 +45,44 @@ export const auth = betterAuth({
     }),
   ],
 
+  // User Specific Configuration
+  user: {
+    deleteUser: { enabled: true },
+    changeEmail: {
+      enabled: true,
+      sendChangeEmailVerification: async ({ user, newEmail, url }) => {
+        const emailHtml = await render(
+          <ChangeEmailMail user={{ ...user, newEmail }} verifyEmailLink={url} />
+        )
+
+        const { data, error } = await tryCatch(
+          sendEmail({
+            to: user.email,
+            subject: "Verify change of email address.",
+            html: emailHtml,
+          })
+        )
+
+        if (error) {
+          console.error(
+            "[AUTH] Error sending change email verification: ",
+            error
+          )
+          return
+        }
+
+        console.log("[AUTH] Change email verification sent", data)
+      },
+    },
+  },
+
   // Auth Providers configuration
   emailAndPassword: {
     enabled: true,
     sendResetPasswordEmail: true,
     sendResetPassword: async ({ user, url }) => {
       const emailHtml = await render(
-        <ResetPasswordEmail user={user} resetPasswordLink={url} />
+        <ResetPasswordMail user={user} resetPasswordLink={url} />
       )
 
       const { data, error } = await tryCatch(
@@ -74,7 +106,7 @@ export const auth = betterAuth({
     enabled: true,
     sendVerificationEmail: async ({ user, url }) => {
       const emailHtml = await render(
-        <VerifyEmailEmail user={user} verifyEmailLink={url} />
+        <VerifyEmailMail user={user} verifyEmailLink={url} />
       )
 
       const { data, error } = await tryCatch(

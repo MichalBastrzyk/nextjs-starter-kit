@@ -2,8 +2,8 @@ import * as React from "react"
 
 import { toast } from "sonner"
 
+import { getImageDimensions } from "@/lib/image-manipulation"
 import { tryCatch } from "@/lib/try-catch"
-import { getImageDimensions } from "@/lib/utils"
 
 import {
   getPresignedUploadUrl,

@@ -11,41 +11,47 @@ import {
   Text,
 } from "@react-email/components"
 
-interface ResetPasswordEmailProps {
+interface EmailChangeMailProps {
   user: {
     id: string
     name: string
     email: string
+    newEmail: string
     emailVerified: boolean
     createdAt: Date
     updatedAt: Date
     image?: string | null | undefined
   }
-  resetPasswordLink?: string
+  verifyEmailLink?: string
 }
 
-export const ResetPasswordEmail = ({
+export const EmailChangeMail = ({
   user,
-  resetPasswordLink,
-}: ResetPasswordEmailProps) => {
+  verifyEmailLink,
+}: EmailChangeMailProps) => {
   return (
     <Html>
       <Head />
       <Body style={main}>
-        <Preview>Dropbox reset your password</Preview>
+        <Preview>Confirm your new email address</Preview>
         <Container style={container}>
           <Section>
-            <Text style={text}>Hi {user?.name?.split(" ")[0].trim()},</Text>
             <Text style={text}>
-              Someone recently requested a password change for your account. If
-              this was you, you can set a new password here:
+              Hi {user?.name?.split(" ")?.[0]?.trim() ?? "there"},
             </Text>
-            <Button style={button} href={resetPasswordLink}>
-              Reset password
+            <Text style={text}>
+              We received a request to change your email address from{" "}
+              {user?.email} to {user?.newEmail}.
+            </Text>
+            <Text style={text}>
+              Please confirm this change by clicking the button below:
+            </Text>
+            <Button style={button} href={verifyEmailLink}>
+              Confirm Email Change
             </Button>
             <Text style={text}>
-              If you don&apos;t want to change your password or didn&apos;t
-              request this, just ignore and delete this message.
+              We&apos;ll send you a new verification email to your new email
+              address.
             </Text>
             <Text style={text}>
               To keep your account secure, please don&apos;t forward this email
@@ -58,14 +64,16 @@ export const ResetPasswordEmail = ({
   )
 }
 
-ResetPasswordEmail.PreviewProps = {
+EmailChangeMail.PreviewProps = {
   user: {
     name: "Alan",
+    email: "old@example.com",
+    newEmail: "new@example.com",
   },
-  resetPasswordLink: "https://www.dropbox.com",
-} as ResetPasswordEmailProps
+  verifyEmailLink: "https://example.com/verify-email-change", // Example link
+} as EmailChangeMailProps
 
-export default ResetPasswordEmail
+export default EmailChangeMail
 
 const main = {
   backgroundColor: "#f6f9fc",
