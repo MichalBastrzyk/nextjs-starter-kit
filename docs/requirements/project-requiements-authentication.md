@@ -26,7 +26,7 @@ Users can:
 - [x] Users must be able to log out
 - [x] Users must be able to reset their password
 - [x] Users must be able to verify their email
-- [ ] Implement session management with secure cookies (e.g., HttpOnly, Secure, SameSite)
+- [x] Implement session management with secure cookies (e.g., HttpOnly, Secure, SameSite)
 - [ ] (Optional) Provide option for social logins (e.g., Google, GitHub)
 - [ ] (Optional) Implement magic link login as an alternative method
 - [ ] Implement multi-factor authentication (MFA/2FA) as an optional security feature for users
@@ -38,21 +38,21 @@ Users can:
 
 Users:
 
-- [ ] Users must be able to modify their account information
-  - [ ] Name
-  - [ ] Email (requires re-verification)
-  - [ ] Password
-  - [ ] Profile Picture (upload or URL)
+- [x] Users must be able to modify their account information
+  - [x] Name
+  - [x] Email (requires re-verification)
+  - [x] Password
+  - [x] Profile Picture (upload or URL)
 - [ ] Users must be able to export their account data (GDPR compliance)
-- [ ] Users must be able to delete their account with clear data retention policy
+- [x] Users must be able to delete their account with clear data retention policy
 
 Admins:
 
-- [ ] Admins must be able to view all users (with pagination/search)
-- [ ] Admins must be able to view any specific user's account information
-- [ ] Admins must be able to create new users manually
-- [ ] Admins must be able to modify any user's account information (including roles)
-- [ ] Admins must be able to assign/change user roles
+- [x] Admins must be able to view all users (with pagination/search)
+- [x] Admins must be able to view any specific user's account information
+- [x] Admins must be able to create new users manually
+- [x] Admins must be able to modify any user's account information (including roles)
+- [x] Admins must be able to assign/change user roles
 - [ ] Admins must be able to delete any user's account (soft delete recommended)
 - [ ] Admins must be able to temporarily suspend/unsuspend user accounts
 - [ ] Admins must be able to trigger password reset for any user
@@ -62,14 +62,14 @@ Admins:
 
 - [x] All passwords must be securely hashed and salted before storage (e.g., using bcrypt or Argon2).
 - [ ] Implement rate limiting on login, sign-up, and password reset endpoints to mitigate brute-force attacks.
-- [ ] Validate and sanitize all user inputs related to authentication (email format, password complexity rules).
-- [ ] Ensure secure handling and storage/invalidation of sessions and tokens.
+- [x] Validate and sanitize all user inputs related to authentication (email format, password complexity rules).
+- [x] Ensure secure handling and storage/invalidation of sessions and tokens.
 - [ ] Protect against common web vulnerabilities (CSRF, XSS) in authentication forms and processes.
 - [ ] Implement basic Role-Based Access Control (RBAC) checks on API routes and UI elements based on user role.
-- [ ] Define and enforce comprehensive password policies:
-  - [ ] Minimum length (8+ characters recommended)
-  - [ ] Complexity requirements (combination of letters, numbers, special characters)
-  - [ ] Prevention of common/compromised passwords
+- [x] Define and enforce comprehensive password policies:
+  - [x] Minimum length (8+ characters recommended)
+  - [x] Complexity requirements (combination of letters, numbers, special characters)
+  - [x] Prevention of common/compromised passwords
   - [ ] Password rotation policy (if required)
 - [ ] Implement secure API authentication strategy (JWT, OAuth) with proper token management
 - [ ] Maintain comprehensive audit logs for authentication events (login attempts, password changes, role modifications)
@@ -98,8 +98,8 @@ Admins:
 
 ## Device and Session Management
 
-- [ ] Users must be able to view all active sessions across devices
-- [ ] Users must be able to terminate any active session remotely
+- [x] Users must be able to view all active sessions across devices
+- [x] Users must be able to terminate any active session remotely
 - [ ] Users should receive notifications about new device logins
 - [ ] Users should be able to assign recognizable names to trusted devices
 
