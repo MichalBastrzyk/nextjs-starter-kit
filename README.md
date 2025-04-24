@@ -12,7 +12,8 @@ A modern, production-ready Next.js starter kit with everything you need to build
 - 🎨 **shadcn/ui** components
 - 📊 **Drizzle ORM** for database
 - 🔐 **Better-Auth** for authentication with **role-based permissions** with type-safe checks
-- 📧 **React Email** for email system
+- 📧 **React Email** for email system with **Mailpit** for local email testing
+- ☁️ **LocalStack** for local AWS service testing (e.g., S3)
 - 🔒 **next-safe-action** for type-safe server actions
 - 📊 **shadcn-table** for data tables
 - 🔄 **React Hook Form** for forms
@@ -45,20 +46,25 @@ src/
 2. **Install dependencies**
 
    ```bash
-   bun install
+   pnpm install
    ```
 
 3. **Set up environment variables**
 
    Edit `.env` with your configuration.
 
-4. **Start the development server**
+4. **Start the development server and Docker services**
+
+   The `docker-compose.yml` includes services like Mailpit for email testing and LocalStack for emulating AWS services (like S3) locally.
 
    ```bash
-   bun dev
+   docker-compose up -d  # Start Mailpit, LocalStack, and other services
+   pnpm dev
    ```
 
 5. **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
+
+6. **For email testing, access Mailpit at [http://localhost:8025](http://localhost:8025)**
 
 ## 🛠️ Available Scripts
 
@@ -86,6 +92,7 @@ For more information about the technologies used in this starter kit:
 - [Drizzle ORM Documentation](https://orm.drizzle.team)
 - [Better-Auth Documentation](https://www.better-auth.com/)
 - [next-safe-action Documentation](https://next-safe-action.dev/docs/getting-started)
+- [Mailpit Documentation](https://github.com/axllent/mailpit)
 
 ## 🤝 Contributing
 

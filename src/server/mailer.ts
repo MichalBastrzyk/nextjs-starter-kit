@@ -9,10 +9,10 @@ export const sendEmail = async (mailOptions: Mail.Options) => {
   const transporter = nodemailer.createTransport({
     host: env.EMAIL_HOST,
     port: env.EMAIL_PORT,
-    secure: false, // IMPORTANT: Set to false for STARTTLS.
+    secure: false, // Set to false for local SMTP servers like Mailpit that don't support TLS
     // `true` would imply implicit TLS wrapper, usually on port 465.
     // Nodemailer will automatically attempt STARTTLS on port 587 if `secure: false`.
-    requireTLS: true, // Optional, but recommended: force TLS, fail if STARTTLS fails
+    requireTLS: false, // Don't require TLS for local testing
     auth: {
       user: env.EMAIL_USER,
       pass: env.EMAIL_PASSWORD,

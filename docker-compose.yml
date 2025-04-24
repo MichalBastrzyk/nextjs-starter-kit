@@ -9,7 +9,20 @@ services:
       - SERVICES=s3
       - PERSISTENCE=ALL
     volumes:
-      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "${LOCALSTACK_VOLUME_DIR:-./temp/localstack}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "./init-s3.sh:/etc/localstack/init/ready.d/init-s3.sh"
       - "./s3-cors-config.json:/etc/localstack/init/ready.d/s3-cors-config.json"
+
+  mailpit:
+    container_name: "mailpit"
+    image: axllent/mailpit:latest
+    ports:
+      - "1025:1025" # SMTP server
+      - "8025:8025" # Web UI
+    environment:
+      - MP_STORAGE=file
+      - MP_DATABASE=/data/mailpit.db
+    volumes:
+      - "./temp/mailpit:/data"
+    restart: unless-stopped

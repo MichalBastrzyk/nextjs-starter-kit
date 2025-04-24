@@ -22,8 +22,8 @@ export const env = createEnv({
     // EMAIL
     EMAIL_HOST: z.string(),
     EMAIL_PORT: z.coerce.number(),
-    EMAIL_USER: z.string(),
-    EMAIL_PASSWORD: z.string(),
+    EMAIL_USER: z.string().default(""),
+    EMAIL_PASSWORD: z.string().default(""),
     EMAIL_FROM_ADDRESS: z.string(),
 
     // S3 (default values are for localstack)
