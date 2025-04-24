@@ -7,6 +7,8 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { DashboardHeader } from "@/components/dashboard/dashboard-header"
 import { DashboardSidebar } from "@/components/dashboard/sidebar/dashboard-sidebar"
 
+import { Banner } from "./banner"
+
 export default async function DashboardLayout({
   children,
 }: {
@@ -20,6 +22,7 @@ export default async function DashboardLayout({
 
   return (
     <NuqsAdapter>
+      <Banner />
       <SidebarProvider
         style={
           {
