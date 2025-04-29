@@ -17,7 +17,9 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "seed:s3": "tsx src/tasks/seed-s3.ts",
-    "email:dev": "email dev -p 4000 -d src/emails"
+    "email:dev": "email dev -p 4000 -d src/emails",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.787.0",
@@ -85,8 +87,9 @@
     "@eslint/eslintrc": "^3",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@next/eslint-plugin-next": "^15.3.0",
+    "@playwright/test": "^1.52.0",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^20.17.30",
     "@types/nodemailer": "^6.4.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",

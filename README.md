@@ -20,6 +20,7 @@ A modern, production-ready Next.js starter kit with everything you need to build
 - 📝 **Zod** for validation
 - 🎨 **Tailwind Animate** for animations
 - 📱 **Mobile First** approach
+- 🧪 **Playwright** for E2E testing
 
 ## 📁 Project Structure
 
@@ -32,6 +33,11 @@ src/
 ├── lib/              # Utility functions and shared logic
 ├── server/           # Server-side code (DB, Auth, API logic)
 └── env.js            # Environment variables validation
+e2e/                  # End-to-end tests with Playwright
+├── auth/             # Authentication-related tests
+├── navigation/       # Navigation flow tests
+├── fixtures/         # Test fixtures and helpers
+└── utils/            # Test utilities
 ```
 
 ## 🚀 Getting Started
@@ -81,6 +87,10 @@ src/
 - `db:migrate` - Apply DB migrations
 - `db:studio` - Open Drizzle Studio GUI
 - `email:dev` - Start React Email development server
+- `test:e2e` - Run Playwright E2E tests
+- `test:e2e:ui` - Run Playwright tests with UI mode
+- `test:e2e:debug` - Run Playwright tests in debug mode
+- `test:e2e:generate` - Generate Playwright test code
 
 ## 📚 Documentation
 
@@ -93,6 +103,38 @@ For more information about the technologies used in this starter kit:
 - [Better-Auth Documentation](https://www.better-auth.com/)
 - [next-safe-action Documentation](https://next-safe-action.dev/docs/getting-started)
 - [Mailpit Documentation](https://github.com/axllent/mailpit)
+- [Playwright Documentation](https://playwright.dev/docs/intro)
+
+## 🧪 E2E Testing
+
+This project uses Playwright for end-to-end testing. The tests are located in the `e2e` directory.
+
+### Running Tests
+
+```bash
+# Run all tests
+pnpm test:e2e
+
+# Run tests with UI mode
+pnpm test:e2e:ui
+
+# Run tests in debug mode
+pnpm test:e2e:debug
+
+# Generate test code
+pnpm test:e2e:generate
+```
+
+### Test Structure
+
+- **Authentication Tests**: Tests for login, registration, and authentication flows
+- **Navigation Tests**: Tests for navigation between pages and components
+- **Fixtures**: Reusable test data and setup code
+- **Utils**: Helper functions for common test operations
+
+### CI Integration
+
+The project includes a GitHub Actions workflow for running Playwright tests on pull requests and pushes to the main branch.
 
 ## 🤝 Contributing
 

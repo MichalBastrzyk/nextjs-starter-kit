@@ -29,7 +29,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@e2e/*": ["./e2e/*"]
     }
   },
   "include": [
