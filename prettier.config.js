@@ -33,6 +33,8 @@ const config = {
     "^@/config/(.*)$",
     "^@/env$",
     "",
+    "^@e2e/(.*)$",
+    "",
     "^[./]",
   ],
   importOrderSeparation: false,
