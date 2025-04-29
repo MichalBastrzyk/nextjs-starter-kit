@@ -15,7 +15,7 @@ test.describe("Authentication flows", () => {
 
   test("login page loads correctly", async ({ page }) => {
     // Check that login form elements are visible
-    await expect(page.getByRole("heading")).toBeVisible()
+    await expect(page.locator("[data-slot='card-title']")).toBeVisible()
     await expect(page.getByLabel(/email/i)).toBeVisible()
     await expect(page.getByLabel(/password/i)).toBeVisible()
     await expect(page.getByRole("button", { name: /sign in/i })).toBeVisible()
