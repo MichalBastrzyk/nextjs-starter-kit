@@ -21,6 +21,7 @@ A modern, production-ready Next.js starter kit with everything you need to build
 - 🎨 **Tailwind Animate** for animations
 - 📱 **Mobile First** approach
 - 🧪 **Playwright** for E2E testing
+- ⚡️ **Vitest** for unit testing
 
 ## 📁 Project Structure
 
@@ -92,6 +93,7 @@ temp/                    # Temporary files and folder
 - `db:migrate` - Apply DB migrations
 - `db:studio` - Open Drizzle Studio GUI
 - `email:dev` - Start React Email development server
+- `test:unit` - Run unit tests with Vitest
 - `test:e2e` - Run Playwright E2E tests
 - `test:e2e:ui` - Run Playwright tests with UI mode
 
@@ -106,6 +108,7 @@ For more information about the technologies used in this starter kit:
 - [Better-Auth Documentation](https://www.better-auth.com/)
 - [next-safe-action Documentation](https://next-safe-action.dev/docs/getting-started)
 - [Mailpit Documentation](https://github.com/axllent/mailpit)
+- [Vitest Documentation](https://vitest.dev/)
 - [Playwright Documentation](https://playwright.dev/docs/intro)
 
 ## 🤝 Contributing
