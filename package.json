@@ -16,7 +16,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
-    "seed:s3": "tsx src/tasks/seed-s3.ts",
+    "s3:seed": "tsx src/tasks/seed-s3.ts",
     "email:dev": "email dev -p 4000 -d src/emails",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
