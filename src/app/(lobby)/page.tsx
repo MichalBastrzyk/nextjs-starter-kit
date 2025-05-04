@@ -1,14 +1,14 @@
 import Link from "next/link"
 
 import {
-  ArrowRight,
-  Check,
-  Code,
-  Database,
-  Palette,
-  Rocket,
-  Shield,
-  Smartphone,
+  ArrowRightIcon,
+  CheckIcon,
+  CodeIcon,
+  DatabaseIcon,
+  PaletteIcon,
+  RocketIcon,
+  ShieldIcon,
+  SmartphoneIcon,
 } from "lucide-react"
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -65,12 +65,13 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button size="lg" asChild>
                 <Link href="/docs">
-                  Start in 30 Seconds <ArrowRight className="ml-2 h-4 w-4" />
+                  Start in 30 Seconds{" "}
+                  <ArrowRightIcon className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link href="https://github.com/MichalBastrzyk/nextjs-starter-kit">
-                  View on GitHub <Code className="ml-2 h-4 w-4" />
+                  View on GitHub <CodeIcon className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
@@ -90,32 +91,32 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               <FeatureCard
-                icon={<Rocket className="h-10 w-10" />}
+                icon={<RocketIcon className="h-10 w-10" />}
                 title="Next.js 15"
                 description="Streamlined App Router setup with zero configuration required"
               />
               <FeatureCard
-                icon={<Shield className="h-10 w-10" />}
+                icon={<ShieldIcon className="h-10 w-10" />}
                 title="TypeScript"
                 description="Pre-configured type safety that stays out of your way"
               />
               <FeatureCard
-                icon={<Palette className="h-10 w-10" />}
+                icon={<PaletteIcon className="h-10 w-10" />}
                 title="Tailwind CSS"
                 description="Ready-to-use styling without the complexity"
               />
               <FeatureCard
-                icon={<Code className="h-10 w-10" />}
+                icon={<CodeIcon className="h-10 w-10" />}
                 title="shadcn/ui Components"
                 description="Copy-paste components that just work, no dependencies to manage"
               />
               <FeatureCard
-                icon={<Database className="h-10 w-10" />}
+                icon={<DatabaseIcon className="h-10 w-10" />}
                 title="Drizzle ORM"
                 description="Lightweight database setup with minimal boilerplate"
               />
               <FeatureCard
-                icon={<Smartphone className="h-10 w-10" />}
+                icon={<SmartphoneIcon className="h-10 w-10" />}
                 title="Ship Fast"
                 description="From zero to production in minutes with optimized defaults"
               />
@@ -211,7 +212,7 @@ export default function Home() {
               <div className="flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row">
                 <Button size="lg" className="w-full sm:w-auto" asChild>
                   <Link href="/docs">
-                    Start Building <ArrowRight className="ml-2 h-4 w-4" />
+                    Start Building <ArrowRightIcon className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button
@@ -258,7 +259,7 @@ interface FeatureProps {
 function Feature({ text }: FeatureProps) {
   return (
     <div className="flex items-center gap-2">
-      <Check className="text-primary h-5 w-5" />
+      <CheckIcon className="text-primary h-5 w-5" />
       <span>{text}</span>
     </div>
   )

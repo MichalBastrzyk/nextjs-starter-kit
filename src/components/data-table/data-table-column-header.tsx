@@ -1,7 +1,13 @@
 "use client"
 
 import type { Column } from "@tanstack/react-table"
-import { ChevronDown, ChevronsUpDown, ChevronUp, EyeOff, X } from "lucide-react"
+import {
+  ChevronDownIcon,
+  ChevronsUpDownIcon,
+  ChevronUpIcon,
+  EyeOffIcon,
+  XIcon,
+} from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import {
@@ -40,11 +46,11 @@ export function DataTableColumnHeader<TData, TValue>({
         {title}
         {column.getCanSort() &&
           (column.getIsSorted() === "desc" ? (
-            <ChevronDown />
+            <ChevronDownIcon />
           ) : column.getIsSorted() === "asc" ? (
-            <ChevronUp />
+            <ChevronUpIcon />
           ) : (
-            <ChevronsUpDown />
+            <ChevronsUpDownIcon />
           ))}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-28">
@@ -55,7 +61,7 @@ export function DataTableColumnHeader<TData, TValue>({
               checked={column.getIsSorted() === "asc"}
               onClick={() => column.toggleSorting(false)}
             >
-              <ChevronUp />
+              <ChevronUpIcon />
               Asc
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
@@ -63,7 +69,7 @@ export function DataTableColumnHeader<TData, TValue>({
               checked={column.getIsSorted() === "desc"}
               onClick={() => column.toggleSorting(true)}
             >
-              <ChevronDown />
+              <ChevronDownIcon />
               Desc
             </DropdownMenuCheckboxItem>
             {column.getIsSorted() && (
@@ -71,7 +77,7 @@ export function DataTableColumnHeader<TData, TValue>({
                 className="[&_svg]:text-muted-foreground pl-2"
                 onClick={() => column.clearSorting()}
               >
-                <X />
+                <XIcon />
                 Reset
               </DropdownMenuItem>
             )}
@@ -83,7 +89,7 @@ export function DataTableColumnHeader<TData, TValue>({
             checked={!column.getIsVisible()}
             onClick={() => column.toggleVisibility(false)}
           >
-            <EyeOff />
+            <EyeOffIcon />
             Hide
           </DropdownMenuCheckboxItem>
         )}

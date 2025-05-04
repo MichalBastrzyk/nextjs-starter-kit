@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 
 import type { Table } from "@tanstack/react-table"
-import { Download, Plus } from "lucide-react"
+import { DownloadIcon, PlusIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { exportTableToCSV } from "@/components/data-table/export"
@@ -33,7 +33,7 @@ export function UsersTableToolbarActions({
       ) : null}
       <Button size="sm" asChild>
         <Link href="/dashboard/users/new">
-          <Plus />
+          <PlusIcon />
           Add User
         </Link>
       </Button>
@@ -47,7 +47,7 @@ export function UsersTableToolbarActions({
           })
         }
       >
-        <Download />
+        <DownloadIcon />
         Export
       </Button>
     </div>

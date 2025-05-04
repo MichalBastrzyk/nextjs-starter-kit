@@ -4,8 +4,8 @@ import {
   CheckCircleIcon,
   EllipsisIcon,
   MailIcon,
-  Pencil,
-  Trash,
+  PencilIcon,
+  TrashIcon,
   UserIcon,
 } from "lucide-react"
 
@@ -239,7 +239,7 @@ export const getUsersTableColumns = ({
               })
             }
           >
-            <Pencil />
+            <PencilIcon />
             Edit
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -250,7 +250,7 @@ export const getUsersTableColumns = ({
               })
             }
           >
-            <Trash />
+            <TrashIcon />
             Delete
           </DropdownMenuItem>
         </DropdownMenuContent>

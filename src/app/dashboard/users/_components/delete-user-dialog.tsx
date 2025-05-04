@@ -3,7 +3,7 @@
 import * as React from "react"
 
 import type { Row } from "@tanstack/react-table"
-import { Trash2 } from "lucide-react"
+import { Trash2Icon } from "lucide-react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
@@ -40,7 +40,7 @@ export function DeleteUserDialog({
       {showTrigger ? (
         <DialogTrigger asChild>
           <Button variant="outline" size="sm">
-            <Trash2 className="size-4" />
+            <Trash2Icon className="size-4" />
             Delete ({users.length})
           </Button>
         </DialogTrigger>

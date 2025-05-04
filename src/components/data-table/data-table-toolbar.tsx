@@ -3,7 +3,7 @@
 import * as React from "react"
 
 import type { Column, Table } from "@tanstack/react-table"
-import { X } from "lucide-react"
+import { XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -56,7 +56,7 @@ export function DataTableToolbar<TData>({
             className="border-dashed"
             onClick={onReset}
           >
-            <X />
+            <XIcon />
             Reset
           </Button>
         )}

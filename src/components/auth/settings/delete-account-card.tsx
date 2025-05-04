@@ -4,7 +4,7 @@ import * as React from "react"
 import { useRouter } from "next/navigation"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Loader2 } from "lucide-react"
+import { Loader2Icon } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import type { z } from "zod"
@@ -134,7 +134,7 @@ export function DeleteAccountCard() {
                   >
                     {isPending ? (
                       <>
-                        <Loader2 className="mr-2 size-4 animate-spin" />
+                        <Loader2Icon className="mr-2 size-4 animate-spin" />
                         Deleting...
                       </>
                     ) : (

@@ -4,7 +4,7 @@ import * as React from "react"
 import { useRouter } from "next/navigation"
 
 import { IconDeviceDesktop, IconDeviceMobile } from "@tabler/icons-react"
-import { Loader2 } from "lucide-react"
+import { Loader2Icon } from "lucide-react"
 import { toast } from "sonner"
 import { UAParser } from "ua-parser-js"
 
@@ -121,7 +121,7 @@ function SessionCell({
         disabled={isLoading}
         onClick={handleSignOut}
       >
-        {isLoading && <Loader2 className="size-4 animate-spin" />}
+        {isLoading && <Loader2Icon className="size-4 animate-spin" />}
         {isCurrentSession ? "Sign Out" : "Revoke"}
       </Button>
     </li>

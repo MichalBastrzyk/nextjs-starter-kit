@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { UploadCloudIcon, X } from "lucide-react"
+import { UploadCloudIcon, XIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -67,7 +67,7 @@ export function FileUploader({
               </div>
               <FileUploadItemDelete asChild>
                 <Button variant="ghost" size="icon" className="size-7">
-                  <X />
+                  <XIcon />
                 </Button>
               </FileUploadItemDelete>
             </div>
