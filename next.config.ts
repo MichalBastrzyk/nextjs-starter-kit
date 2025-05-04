@@ -15,7 +15,8 @@ const nextConfig: NextConfig = {
     // React Compiler allows for automatic React Optimization by memoizing and other stuff like that.
     // https://nextjs.org/docs/app/api-reference/config/next-config-js/reactCompiler
     // If you feel like your app refereshes in development mode are to slow, you can disable this.
-    reactCompiler: true,
+    // DISABLED BECAUSE: This does not work well yet with the tanstack table
+    // reactCompiler: true,
   },
 
   images: {
