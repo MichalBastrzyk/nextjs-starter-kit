@@ -68,7 +68,7 @@ export const getUsers = async (input: GetUsersSchema) => {
       .select({ count: count() })
       .from(usersTable)
       .where(where)
-      .then((res) => res[0].count)
+      .then((res) => res[0]?.count ?? 0)
 
     return { data, total }
   })
@@ -85,11 +85,11 @@ export const getUser = async (id: string): Promise<User> => {
     throw new Error("You are not allowed to do this")
   }
 
-  const user = await db.select().from(usersTable).where(eq(usersTable.id, id))
+  const users = await db.select().from(usersTable).where(eq(usersTable.id, id))
 
-  if (user.length === 0) {
+  if (users?.[0] === undefined || users.length === 0) {
     throw new Error("User not found")
   }
 
-  return user[0]
+  return users[0]
 }
