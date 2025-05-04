@@ -30,7 +30,10 @@ export const createUserAction = authActionClient
     }
 
     const user = await auth.api.createUser({
-      body: parsedInput,
+      body: {
+        ...parsedInput,
+        role: parsedInput.role === "admin" ? "admin" : undefined,
+      },
     })
 
     if (!user) {

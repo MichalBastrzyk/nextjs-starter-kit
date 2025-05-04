@@ -117,8 +117,8 @@ importers:
         specifier: 19.1.0-rc.1
         version: 19.1.0-rc.1
       better-auth:
-        specifier: ^1.2.4
-        version: 1.2.5(typescript@5.8.3)
+        specifier: ^1.2.7
+        version: 1.2.7
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -2969,11 +2969,11 @@ packages:
     resolution: {integrity: sha512-lGe34o6EHj9y3Kts9R4ZYs/Gr+6N7MCaMlIFA3F1R2O5/m7K06AxfSeO5530PEERE6/WyEg3lsuyw4GHlPZHog==}
     engines: {node: ^4.5.0 || >= 5.9}
 
-  better-auth@1.2.5:
-    resolution: {integrity: sha512-Tz2aKImkvaT7P9qHQ67Vhw/Slo6zpvE0jG7GoDQM+dd5tWuC3lP0OGjjWkNCZdToVlWB193i5nSHeZT90sFqEw==}
+  better-auth@1.2.7:
+    resolution: {integrity: sha512-2hCB263GSrgetsMUZw8vv9O1e4S4AlYJW3P4e8bX9u3Q3idv4u9BzDFCblpTLuL4YjYovghMCN0vurAsctXOAQ==}
 
-  better-call@1.0.7:
-    resolution: {integrity: sha512-p5kEthErx3HsW9dCCvvEx+uuEdncn0ZrlqrOG3TkR1aVYgynpwYbTVU90nY8/UwfMhROzqZWs8vryainSQxrNg==}
+  better-call@1.0.9:
+    resolution: {integrity: sha512-Qfm0gjk0XQz0oI7qvTK1hbqTsBY4xV2hsHAxF8LZfUYl3RaECCIifXuVqtPpZJWvlCCMlQSvkvhhyuApGUba6g==}
 
   bowser@2.11.0:
     resolution: {integrity: sha512-AlcaJBi/pqqJBIQ8U9Mcpc9i8Aqxn88Skv5d+xBX006BY5u8N3mGLHa5Lgppa7L/HfwgwLgZ6NYs+Ag6uUmJRA==}
@@ -8365,7 +8365,7 @@ snapshots:
 
   base64id@2.0.0: {}
 
-  better-auth@1.2.5(typescript@5.8.3):
+  better-auth@1.2.7:
     dependencies:
       '@better-auth/utils': 0.2.4
       '@better-fetch/fetch': 1.1.18
@@ -8373,17 +8373,14 @@ snapshots:
       '@noble/hashes': 1.7.1
       '@simplewebauthn/browser': 13.1.0
       '@simplewebauthn/server': 13.1.1
-      better-call: 1.0.7
+      better-call: 1.0.9
       defu: 6.1.4
       jose: 5.10.0
       kysely: 0.27.6
       nanostores: 0.11.4
-      valibot: 1.0.0-beta.15(typescript@5.8.3)
       zod: 3.24.3
-    transitivePeerDependencies:
-      - typescript
 
-  better-call@1.0.7:
+  better-call@1.0.9:
     dependencies:
       '@better-fetch/fetch': 1.1.18
       rou3: 0.5.1
@@ -10741,6 +10738,7 @@ snapshots:
   valibot@1.0.0-beta.15(typescript@5.8.3):
     optionalDependencies:
       typescript: 5.8.3
+    optional: true
 
   vary@1.1.2: {}
 
