@@ -18,6 +18,7 @@
     "db:studio": "drizzle-kit studio",
     "s3:seed": "tsx src/tasks/seed-s3.ts",
     "email:dev": "email dev -p 4000 -d src/emails",
+    "stripe:listen": "stripe listen --forward-to localhost:3000/api/webhooks/stripe",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"
