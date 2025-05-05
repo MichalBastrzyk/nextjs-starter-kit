@@ -26,3 +26,16 @@ services:
     volumes:
       - "./temp/mailpit:/data"
     restart: unless-stopped
+
+  # Uncomment tthe following lines to enable Valkey services
+  # valkey can be used as a kv for storing the users sessions, other data and caching
+  # valkey:
+  #   container_name: "valkey"
+  #   image: valkey/valkey:8.1.1-alpine
+  #   ports:
+  #     - "6379:6379"
+  #   environment:
+  #     - VALKEY_DATA_DIR=/data
+  #   volumes:
+  #     - "./temp/valkey:/data"
+  #   restart: unless-stopped
