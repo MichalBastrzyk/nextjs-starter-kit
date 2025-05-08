@@ -27,6 +27,9 @@ const nextConfig: NextConfig = {
         hostname: "localhost",
         port: "4566",
       },
+      {
+        hostname: "images.unsplash.com",
+      },
     ],
   },
 
