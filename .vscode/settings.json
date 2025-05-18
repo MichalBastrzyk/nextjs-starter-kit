@@ -9,5 +9,5 @@
     "react-day-picker",
     "@react-email/components",
     "^lucide-react/dist/lucide-react.suffixed$"
-  ],
+  ]
 }
