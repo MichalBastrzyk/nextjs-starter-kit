@@ -1,10 +1,7 @@
-import { render } from "@react-email/components"
 import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
 import { admin as adminPlugin } from "better-auth/plugins"
 import { eq } from "drizzle-orm"
-
-import { tryCatch } from "@/lib/try-catch"
 
 import { db } from "@/server/db"
 import {
@@ -13,13 +10,11 @@ import {
   usersTable,
   verificationTable,
 } from "@/server/db/schema"
-import ChangeEmailMail from "@/emails/email-change-mail"
-import ResetPasswordMail from "@/emails/reset-password-mail"
-import VerifyEmailMail from "@/emails/verify-email-mail"
 
 import { env } from "@/env"
 
-import { sendEmail } from "./mailer"
+import { afterAuthMiddleware } from "./auth-middlware"
+import { sendNotification } from "./notifications"
 import { ac, admin } from "./permissions"
 import { stripe } from "./stripe"
 
@@ -37,6 +32,10 @@ export const auth = betterAuth({
       verification: verificationTable,
     },
   }),
+
+  hooks: {
+    after: afterAuthMiddleware,
+  },
 
   databaseHooks: {
     user: {
@@ -84,29 +83,12 @@ export const auth = betterAuth({
     deleteUser: { enabled: true },
     changeEmail: {
       enabled: true,
-      sendChangeEmailVerification: async ({ user, newEmail, url }) => {
-        const emailHtml = await render(
-          <ChangeEmailMail user={{ ...user, newEmail }} verifyEmailLink={url} />
-        )
-
-        const { data, error } = await tryCatch(
-          sendEmail({
-            to: user.email,
-            subject: "Verify change of email address.",
-            html: emailHtml,
-          })
-        )
-
-        if (error) {
-          console.error(
-            "[AUTH] Error sending change email verification: ",
-            error
-          )
-          return
-        }
-
-        console.log("[AUTH] Change email verification sent", data)
-      },
+      sendChangeEmailVerification: async ({ user, newEmail, url }) =>
+        void (await sendNotification("CHANGE_EMAIL", {
+          user,
+          newEmail,
+          verifyEmailLink: url,
+        })),
     },
   },
 
@@ -114,49 +96,19 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     sendResetPasswordEmail: true,
-    sendResetPassword: async ({ user, url }) => {
-      const emailHtml = await render(
-        <ResetPasswordMail user={user} resetPasswordLink={url} />
-      )
-
-      const { data, error } = await tryCatch(
-        sendEmail({
-          to: user.email,
-          subject: "Reset your password",
-          html: emailHtml,
-        })
-      )
-
-      if (error) {
-        console.error("[AUTH] Error sending reset password email: ", error)
-        return
-      }
-
-      console.log("[AUTH] Reset password email sent", data)
-    },
     requireEmailVerification: true,
+    sendResetPassword: async ({ user, url }) =>
+      void (await sendNotification("RESET_PASSWORD", {
+        user,
+        resetPasswordLink: url,
+      })),
   },
   emailVerification: {
     enabled: true,
-    sendVerificationEmail: async ({ user, url }) => {
-      const emailHtml = await render(
-        <VerifyEmailMail user={user} verifyEmailLink={url} />
-      )
-
-      const { data, error } = await tryCatch(
-        sendEmail({
-          to: user.email,
-          subject: "Verify your email address",
-          html: emailHtml,
-        })
-      )
-
-      if (error) {
-        console.error("[AUTH] Error sending verification email: ", error)
-        return
-      }
-
-      console.log("[AUTH] Verification email sent", data)
-    },
+    sendVerificationEmail: async ({ user, url }) =>
+      void (await sendNotification("VERIFY_EMAIL", {
+        user,
+        verifyEmailLink: url,
+      })),
   },
 })

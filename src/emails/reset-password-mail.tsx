@@ -11,25 +11,18 @@ import {
   Text,
 } from "@react-email/components"
 
+import type { BaseEmailProps } from "@/server/notifications"
+
 import { siteConfig } from "@/config/site"
 
-interface ResetPasswordEmailProps {
-  user: {
-    id: string
-    name: string
-    email: string
-    emailVerified: boolean
-    createdAt: Date
-    updatedAt: Date
-    image?: string | null | undefined
-  }
+export interface ResetPasswordMailProps extends BaseEmailProps {
   resetPasswordLink?: string
 }
 
-export const ResetPasswordEmail = ({
+export const ResetPasswordMail = ({
   user,
   resetPasswordLink,
-}: ResetPasswordEmailProps) => {
+}: ResetPasswordMailProps) => {
   return (
     <Html>
       <Head />
@@ -62,14 +55,14 @@ export const ResetPasswordEmail = ({
   )
 }
 
-ResetPasswordEmail.PreviewProps = {
+ResetPasswordMail.PreviewProps = {
   user: {
     name: "Alan",
   },
   resetPasswordLink: "https://www.dropbox.com",
-} as ResetPasswordEmailProps
+} as ResetPasswordMailProps
 
-export default ResetPasswordEmail
+export default ResetPasswordMail
 
 const main = {
   backgroundColor: "#f6f9fc",

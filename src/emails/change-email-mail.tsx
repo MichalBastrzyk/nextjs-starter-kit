@@ -11,24 +11,18 @@ import {
   Text,
 } from "@react-email/components"
 
-interface EmailChangeMailProps {
-  user: {
-    id: string
-    name: string
-    email: string
-    newEmail: string
-    emailVerified: boolean
-    createdAt: Date
-    updatedAt: Date
-    image?: string | null | undefined
-  }
+import type { BaseEmailProps } from "@/server/notifications"
+
+export interface ChangeEmailMailProps extends BaseEmailProps {
+  newEmail: string
   verifyEmailLink?: string
 }
 
-export const EmailChangeMail = ({
+export const ChangeEmailMail = ({
   user,
+  newEmail,
   verifyEmailLink,
-}: EmailChangeMailProps) => {
+}: ChangeEmailMailProps) => {
   return (
     <Html>
       <Head />
@@ -41,7 +35,7 @@ export const EmailChangeMail = ({
             </Text>
             <Text style={text}>
               We received a request to change your email address from{" "}
-              {user?.email} to {user?.newEmail}.
+              {user?.email} to {newEmail}.
             </Text>
             <Text style={text}>
               Please confirm this change by clicking the button below:
@@ -64,16 +58,16 @@ export const EmailChangeMail = ({
   )
 }
 
-EmailChangeMail.PreviewProps = {
+ChangeEmailMail.PreviewProps = {
   user: {
     name: "Alan",
     email: "old@example.com",
-    newEmail: "new@example.com",
   },
+  newEmail: "new@example.com",
   verifyEmailLink: "https://example.com/verify-email-change", // Example link
-} as EmailChangeMailProps
+} as ChangeEmailMailProps
 
-export default EmailChangeMail
+export default ChangeEmailMail
 
 const main = {
   backgroundColor: "#f6f9fc",

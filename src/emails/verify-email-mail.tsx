@@ -11,16 +11,9 @@ import {
   Text,
 } from "@react-email/components"
 
-interface VerifyEmailMailProps {
-  user: {
-    id: string
-    name: string
-    email: string
-    emailVerified: boolean
-    createdAt: Date
-    updatedAt: Date
-    image?: string | null | undefined
-  }
+import type { BaseEmailProps } from "@/server/notifications"
+
+export interface VerifyEmailMailProps extends BaseEmailProps {
   verifyEmailLink?: string
 }
 
