@@ -38,7 +38,7 @@ export function UserButton() {
   const { data: auth, isPending } = authClient.useSession()
 
   if (isPending) {
-    return <Skeleton className="h-10 w-[16rem] rounded-lg p-6" />
+    return <Skeleton className="h-12.5 w-[16rem] rounded-lg p-6" />
   }
 
   if ((!isPending && !auth) || auth === null) {

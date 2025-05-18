@@ -108,7 +108,7 @@ export function DashboardSidebar({
         <NavMain items={data.navMain} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="gap-0">
         <UserButton />
       </SidebarFooter>
     </Sidebar>
