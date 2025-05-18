@@ -2,6 +2,7 @@ import { render } from "@react-email/components"
 import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
 import { admin as adminPlugin } from "better-auth/plugins"
+import { eq } from "drizzle-orm"
 
 import { tryCatch } from "@/lib/try-catch"
 
@@ -20,6 +21,7 @@ import { env } from "@/env"
 
 import { sendEmail } from "./mailer"
 import { ac, admin } from "./permissions"
+import { stripe } from "./stripe"
 
 export const auth = betterAuth({
   secret: env.BETTER_AUTH_SECRET,
@@ -36,7 +38,33 @@ export const auth = betterAuth({
     },
   }),
 
+  databaseHooks: {
+    user: {
+      create: {
+        after: async (user) => {
+          // Create a Stripe customer for the user after they sign up
+          // and store their Stripe customer ID in the database for later use
+          const newCustomer = await stripe.customers.create({
+            email: user.email,
+            metadata: {
+              userId: user.id,
+            },
+          })
+
+          await db
+            .update(usersTable)
+            .set({ stripeCustomerId: newCustomer.id })
+            .where(eq(usersTable.id, user.id))
+        },
+      },
+    },
+  },
+
   plugins: [
+    // Toggle this if you want to use the anonymous plugin
+    // It can be usefull when you want to allow users to use the app without signing in
+    // Or for example, to allow users to add items to a cart without signing in
+    // anonymousPlugin(),
     adminPlugin({
       ac,
       roles: {
@@ -47,6 +75,12 @@ export const auth = betterAuth({
 
   // User Specific Configuration
   user: {
+    additionalFields: {
+      stripeCustomerId: {
+        type: "string",
+        unique: true,
+      },
+    },
     deleteUser: { enabled: true },
     changeEmail: {
       enabled: true,

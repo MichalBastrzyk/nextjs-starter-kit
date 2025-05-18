@@ -25,18 +25,26 @@ export const postsTable = t.sqliteTable("posts", {
 export type Post = typeof postsTable.$inferSelect
 export type NewPost = typeof postsTable.$inferInsert
 
-export const usersTable = t.sqliteTable("users", {
-  id: t.text().primaryKey(),
-  name: t.text().notNull(),
-  email: t.text().notNull().unique(),
-  emailVerified: t.integer({ mode: "boolean" }).notNull(),
-  image: t.text(),
-  role: t.text(),
-  banned: t.integer({ mode: "boolean" }),
-  banReason: t.text(),
-  banExpires: t.integer({ mode: "timestamp" }),
-  ...lifecycleDates,
-})
+export const usersTable = t.sqliteTable(
+  "users",
+  {
+    id: t.text().primaryKey(),
+    name: t.text().notNull(),
+    email: t.text().notNull().unique(),
+    emailVerified: t.integer({ mode: "boolean" }).notNull(),
+    stripeCustomerId: t.text().unique(),
+    image: t.text(),
+    role: t.text(),
+    banned: t.integer({ mode: "boolean" }),
+    banReason: t.text(),
+    banExpires: t.integer({ mode: "timestamp" }),
+    ...lifecycleDates,
+  },
+  (table) => [
+    t.uniqueIndex("email_idx").on(table.email),
+    t.uniqueIndex("stripe_customer_id_idx").on(table.stripeCustomerId),
+  ]
+)
 
 export type User = typeof usersTable.$inferSelect
 export type NewUser = typeof usersTable.$inferInsert

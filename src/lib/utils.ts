@@ -26,7 +26,20 @@ export function formatDate(
       year: opts.year ?? "numeric",
       ...opts,
     }).format(new Date(date))
-  } catch {
+  } catch (e) {
+    console.error("formatDate error:", e)
     return ""
   }
+}
+
+export const formatPrice = (amount: number, currency = "USD") => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+  }).format(amount / 100)
+}
+
+export function formatPhone(phone: string): string {
+  if (phone.length !== 12) return phone
+  return `${phone.slice(0, 3)} ${phone.slice(3, 6)} ${phone.slice(6, 9)} ${phone.slice(9)}`
 }
