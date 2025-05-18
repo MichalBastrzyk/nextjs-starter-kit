@@ -17,8 +17,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
-import { useAuthData } from "../use-auth-data"
+import { useAuthData } from "@/components/auth/use-auth-data"
 
 type Session = (typeof authClient.$Infer.Session)["session"]
 
@@ -41,9 +40,10 @@ export function SessionsCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Sessions</CardTitle>
+        <CardTitle>Acitve Sessions</CardTitle>
         <CardDescription>
-          Manage your active sessions and revoke access.
+          These are the active sessions for your account. You can revoke acccess
+          to any of them.
         </CardDescription>
       </CardHeader>
       <CardContent>

@@ -26,7 +26,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+import { PasswordInput } from "@/components/auth/password-input"
 
 import { resetPasswordSchema } from "@/server/schema/auth"
 
@@ -43,6 +43,7 @@ export function ResetPasswordForm({
     defaultValues: {
       newPassword: "",
       confirmPassword: "",
+      token: searchParams.get("token")!,
     },
   })
 
@@ -75,7 +76,10 @@ export function ResetPasswordForm({
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit, (e) => console.error(e))}
+              className="space-y-4"
+            >
               <FormField
                 control={form.control}
                 name="newPassword"
@@ -83,11 +87,7 @@ export function ResetPasswordForm({
                   <FormItem>
                     <FormLabel>New Password</FormLabel>
                     <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="********"
-                        {...field}
-                      />
+                      <PasswordInput {...field} autoComplete="new-password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -100,17 +100,17 @@ export function ResetPasswordForm({
                   <FormItem>
                     <FormLabel>Confirm Password</FormLabel>
                     <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="********"
-                        {...field}
-                      />
+                      <PasswordInput {...field} autoComplete="new-password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full" disabled={isPending}>
+              <Button
+                type="submit"
+                className="mt-4 w-full"
+                disabled={isPending}
+              >
                 {isPending ? "Resetting password..." : "Reset password"}
               </Button>
             </form>

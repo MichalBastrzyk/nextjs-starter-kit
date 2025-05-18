@@ -103,7 +103,10 @@ export function SignInForm({
                       </Link>
                     </div>
                     <FormControl>
-                      <PasswordInput {...field} />
+                      <PasswordInput
+                        {...field}
+                        autoComplete="current-password"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

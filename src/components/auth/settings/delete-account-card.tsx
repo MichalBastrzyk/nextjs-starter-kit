@@ -38,10 +38,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import { PasswordInput } from "@/components/auth/password-input"
 
 import { deleteAccountSchema } from "@/server/schema/auth"
-
-import { PasswordInput } from "../password-input"
 
 export function DeleteAccountCard() {
   const router = useRouter()

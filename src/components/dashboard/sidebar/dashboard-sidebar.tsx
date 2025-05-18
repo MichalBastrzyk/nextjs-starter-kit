@@ -24,7 +24,6 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { UserButton } from "@/components/auth/user-button"
-import { UserProfileModal } from "@/components/auth/user-profile-modal"
 import { NavMain } from "@/components/dashboard/sidebar/nav-main"
 import { NavSecondary } from "@/components/dashboard/sidebar/nav-secondary"
 import { Icons } from "@/components/icons"
@@ -110,7 +109,6 @@ export function DashboardSidebar({
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <UserProfileModal />
         <UserButton />
       </SidebarFooter>
     </Sidebar>

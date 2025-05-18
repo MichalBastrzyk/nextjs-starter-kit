@@ -5,39 +5,38 @@ import * as React from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 export function PasswordInput({
   className,
   ...props
 }: Omit<React.ComponentProps<"input">, "type">) {
-  const [showPassword, setShowPassword] = React.useState(false)
+  const [isVisible, setIsVisible] = React.useState(false)
+
+  const toggleVisibility = () => setIsVisible((prev) => !prev)
 
   return (
     <div className="relative">
       <Input
-        type={showPassword ? "text" : "password"}
-        className={cn("pr-10", className)}
+        placeholder="Password"
+        className={cn("pe-9", className)}
+        type={isVisible ? "text" : "password"}
         {...props}
       />
-      <Button
+      <button
+        className="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md outline-none transition-[color,box-shadow] focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
         type="button"
-        variant="ghost"
-        size="sm"
-        className="absolute right-0 top-0 h-full px-3 py-1 hover:bg-transparent"
-        onClick={() => setShowPassword((prev) => !prev)}
-        disabled={props.value === "" || props.disabled}
+        onClick={toggleVisibility}
+        aria-label={isVisible ? "Hide password" : "Show password"}
+        aria-pressed={isVisible}
+        aria-controls="password"
       >
-        {showPassword ? (
-          <EyeOffIcon className="size-4" aria-hidden="true" />
+        {isVisible ? (
+          <EyeOffIcon size={16} aria-hidden="true" />
         ) : (
-          <EyeIcon className="size-4" aria-hidden="true" />
+          <EyeIcon size={16} aria-hidden="true" />
         )}
-        <span className="sr-only">
-          {showPassword ? "Hide password" : "Show password"}
-        </span>
-      </Button>
+      </button>
     </div>
   )
 }

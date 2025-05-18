@@ -112,7 +112,7 @@ export function SignUpForm({
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <PasswordInput {...field} />
+                      <PasswordInput {...field} autoComplete="new-password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -125,7 +125,7 @@ export function SignUpForm({
                   <FormItem>
                     <FormLabel>Confirm Password</FormLabel>
                     <FormControl>
-                      <PasswordInput {...field} />
+                      <PasswordInput {...field} autoComplete="new-password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
