@@ -2,24 +2,29 @@ import Link from "next/link"
 
 import {
   AlertCircleIcon,
+  ArrowLeftIcon,
   LifeBuoyIcon,
   ShoppingBagIcon,
   XCircleIcon,
 } from "lucide-react"
 
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 
 export default function CheckoutCancelPage() {
   return (
-    <div className="from-background to-muted/10 relative min-h-[100dvh] bg-gradient-to-br">
+    <div className="from-background to-muted/20 relative min-h-[100dvh] bg-gradient-to-b">
+      {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="bg-muted/15 absolute -left-32 -top-32 h-[28rem] w-[28rem] rotate-12 transform opacity-70 blur-3xl" />
-        <div className="bg-muted/15 absolute -bottom-32 -right-32 h-[28rem] w-[28rem] -rotate-12 transform opacity-70 blur-3xl" />
+        <div className="absolute -left-4 top-0 h-72 w-72 bg-red-500/5 blur-3xl" />
+        <div className="absolute -right-4 bottom-0 h-72 w-72 bg-red-500/5 blur-3xl" />
       </div>
 
       <div className="container relative">
         <div className="mx-auto flex min-h-[100dvh] max-w-2xl flex-col justify-center gap-8 py-20">
+          {/* Header Section */}
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-6">
               <div className="animate-ping-slow bg-destructive/20 absolute inset-0 rounded-full" />
@@ -35,9 +40,10 @@ export default function CheckoutCancelPage() {
             </p>
           </div>
 
+          {/* Alert Section */}
           <Alert
             variant="destructive"
-            className="border-destructive/20 bg-destructive/5 border-2"
+            className="border-destructive/20 bg-destructive/5 border-2 shadow-lg"
           >
             <AlertCircleIcon className="h-5 w-5" />
             <AlertDescription className="ml-2 text-base font-medium">
@@ -46,48 +52,67 @@ export default function CheckoutCancelPage() {
             </AlertDescription>
           </Alert>
 
-          <Card>
+          {/* Options Card */}
+          <Card className="border-none shadow-lg">
             <CardHeader className="space-y-1">
               <CardTitle className="text-2xl">Next Steps</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-6">
-              <Link href="/" passHref>
-                <div className="group relative block cursor-pointer">
-                  <div className="from-primary/20 to-primary/10 absolute -inset-px rounded-lg bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <div className="bg-card relative flex gap-4 rounded-lg border p-4 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-xl">
-                    <div className="bg-primary/10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
-                      <ShoppingBagIcon className="text-primary h-6 w-6" />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="font-semibold">Try checkout again</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        Your cart items are saved. Return anytime to complete
-                        your purchase.
-                      </p>
-                    </div>
+              {/* Option 1 */}
+              <div className="group relative">
+                <div className="from-muted to-muted/50 absolute -inset-px rounded-lg bg-gradient-to-r opacity-0 transition group-hover:opacity-100" />
+                <div className="bg-card relative flex gap-4 rounded-lg border p-4">
+                  <div className="bg-primary/10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
+                    <ShoppingBagIcon className="text-primary h-6 w-6" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="font-semibold">Try checkout again</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      Your cart items are saved. Return anytime to complete your
+                      purchase.
+                    </p>
                   </div>
                 </div>
-              </Link>
+              </div>
 
-              <Link href="/support" passHref>
-                <div className="group relative block cursor-pointer">
-                  <div className="from-primary/20 to-primary/10 absolute -inset-px rounded-lg bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <div className="bg-card relative flex gap-4 rounded-lg border p-4 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-xl">
-                    <div className="bg-primary/10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
-                      <LifeBuoyIcon className="text-primary h-6 w-6" />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="font-semibold">Need assistance?</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        Our support team is ready to help with any checkout
-                        issues.
-                      </p>
-                    </div>
+              {/* Option 2 */}
+              <div className="group relative">
+                <div className="from-muted to-muted/50 absolute -inset-px rounded-lg bg-gradient-to-r opacity-0 transition group-hover:opacity-100" />
+                <div className="bg-card relative flex gap-4 rounded-lg border p-4">
+                  <div className="bg-primary/10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
+                    <LifeBuoyIcon className="text-primary h-6 w-6" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="font-semibold">Need assistance?</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      Our support team is ready to help with any checkout
+                      issues.
+                    </p>
                   </div>
                 </div>
-              </Link>
+              </div>
             </CardContent>
           </Card>
+
+          <Separator className="my-2" />
+
+          {/* Action Buttons */}
+          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <Button asChild size="lg" className="sm:max-w-[240px] sm:flex-1">
+              <Link href="/">
+                <ArrowLeftIcon size={18} className="mr-2" />
+                Return to Cart
+              </Link>
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="sm:max-w-[240px] sm:flex-1"
+            >
+              <LifeBuoyIcon size={18} className="mr-2" />
+              Contact Support
+            </Button>
+          </div>
         </div>
       </div>
     </div>
